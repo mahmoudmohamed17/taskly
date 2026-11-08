@@ -49,7 +49,7 @@ class DetailsHeader extends StatelessWidget {
           spacing: 4,
           children: [
             Text(
-              context.tr(AppStrings.memoryUpdatedAt),
+              context.tr(AppStrings.taskUpdatedAt),
               style: context.textTheme.labelSmall?.copyWith(
                 color: context.colorScheme.outline,
               ),

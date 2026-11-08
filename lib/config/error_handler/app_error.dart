@@ -26,11 +26,11 @@ sealed class AppError {
     _TitleTooLong() => AppStrings.errorTitleTooLong,
     _CategoryRequired() => AppStrings.errorCategoryRequired,
     _DetailsTooLong() => AppStrings.errorDetailsTooLong,
-    _MemoryNotFound() => AppStrings.errorMemoryNotFound,
-    _MemorySaveFailed() => AppStrings.errorMemorySaveFailed,
-    _MemoryUpdateFailed() => AppStrings.errorMemoryUpdateFailed,
-    _MemoryDeleteFailed() => AppStrings.errorMemoryDeleteFailed,
-    _MemoryAttachmentFailed() => AppStrings.errorMemoryAttachmentFailed,
+    _MemoryNotFound() => AppStrings.errorTaskNotFound,
+    _MemorySaveFailed() => AppStrings.errorTaskSaveFailed,
+    _MemoryUpdateFailed() => AppStrings.errorTaskUpdateFailed,
+    _MemoryDeleteFailed() => AppStrings.errorTaskDeleteFailed,
+    _MemoryAttachmentFailed() => AppStrings.errorTaskAttachmentFailed,
     _Unknown() => AppStrings.errorUnknown,
   };
 
@@ -84,10 +84,10 @@ sealed class AppError {
 
   // ─── Validation ───────────────────────────────────────────────────────────
 
-  /// The memory title was left empty.
+  /// The task title was left empty.
   const factory AppError.titleRequired() = _TitleRequired;
 
-  /// The memory title exceeds the maximum character limit.
+  /// The task title exceeds the maximum character limit.
   const factory AppError.titleTooLong() = _TitleTooLong;
 
   /// No category was selected before saving.
@@ -96,21 +96,21 @@ sealed class AppError {
   /// The details text exceeds the maximum character limit.
   const factory AppError.detailsTooLong() = _DetailsTooLong;
 
-  // ─── Memory CRUD ─────────────────────────────────────────────────────────
+  // ─── Task CRUD ───────────────────────────────────────────────────────────
 
-  /// The requested memory does not exist in the local DB (deleted elsewhere).
+  /// The requested task does not exist in the local DB (deleted elsewhere).
   const factory AppError.memoryNotFound({Object? cause}) = _MemoryNotFound;
 
-  /// Creating a new memory record failed.
+  /// Creating a new task record failed.
   const factory AppError.memorySaveFailed({Object? cause}) = _MemorySaveFailed;
 
-  /// Updating an existing memory record failed.
+  /// Updating an existing task record failed.
   const factory AppError.memoryUpdateFailed({Object? cause}) = _MemoryUpdateFailed;
 
-  /// Deleting a memory record (and its files) failed.
+  /// Deleting a task record (and its files) failed.
   const factory AppError.memoryDeleteFailed({Object? cause}) = _MemoryDeleteFailed;
 
-  /// Attaching a file to a memory failed.
+  /// Attaching a file to a task failed.
   const factory AppError.memoryAttachmentFailed({Object? cause}) = _MemoryAttachmentFailed;
 
   // ─── Catch-all ────────────────────────────────────────────────────────────
@@ -213,7 +213,7 @@ final class _DetailsTooLong extends AppError {
   const _DetailsTooLong();
 }
 
-// ─── Memory CRUD ─────────────────────────────────────────────────────────────
+// ─── Task CRUD ─────────────────────────────────────────────────────────────
 
 final class _MemoryNotFound extends AppError {
   const _MemoryNotFound({this.cause});

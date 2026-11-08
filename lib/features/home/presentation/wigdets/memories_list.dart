@@ -78,7 +78,7 @@ class MemoriesList extends StatelessWidget {
         children: [
           const FaIcon(FontAwesomeIcons.lightbulb),
           Text(
-            context.tr(AppStrings.homeNoMemories),
+            context.tr(AppStrings.homeNoTasks),
             style: context.textTheme.labelMedium,
             textAlign: TextAlign.center,
           ),

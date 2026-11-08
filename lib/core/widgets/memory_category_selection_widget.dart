@@ -125,11 +125,11 @@ class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionW
       spacing: 2.h,
       children: [
         Text(
-          context.tr(AppStrings.addMemoryCategoryLabel),
+          context.tr(AppStrings.addTaskCategoryLabel),
           style: context.textTheme.labelLarge,
         ),
         Text(
-          context.tr(AppStrings.addMemoryCategoryHint),
+          context.tr(AppStrings.addTaskCategoryHint),
           style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.outline),
         ),
       ],

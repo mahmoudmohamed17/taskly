@@ -21,7 +21,7 @@ class AttachmentsWidget extends StatelessWidget {
       spacing: 8,
       children: [
         Text(
-          context.tr(AppStrings.memoryAttachments),
+          context.tr(AppStrings.taskAttachments),
           style: context.textTheme.bodyLarge?.copyWith(
             color: context.colorScheme.outline,
           ),
@@ -59,7 +59,7 @@ class AttachmentsWidget extends StatelessWidget {
         children: [
           const FaIcon(FontAwesomeIcons.paperclip),
           Text(
-            context.tr(AppStrings.memoryNoAttachments),
+            context.tr(AppStrings.taskNoAttachments),
             style: context.textTheme.labelMedium,
             textAlign: TextAlign.center,
           ),

@@ -21,7 +21,7 @@ class DescriptionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          context.tr(AppStrings.memoryDetails),
+          context.tr(AppStrings.taskDetails),
           style: context.textTheme.bodyLarge?.copyWith(color: context.colorScheme.outline),
         ),
         Container(

@@ -61,7 +61,7 @@ class EditableAttachmentsWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          context.tr(AppStrings.memoryAttachments),
+          context.tr(AppStrings.taskAttachments),
           style: context.textTheme.bodyLarge,
         ),
         GestureDetector(
@@ -71,7 +71,7 @@ class EditableAttachmentsWidget extends StatelessWidget {
             spacing: 6.w,
             children: [
               Text(
-                context.tr(AppStrings.addMemoryAttachmentTitle),
+                context.tr(AppStrings.addTaskAttachmentTitle),
                 style: context.textTheme.labelMedium?.copyWith(color: context.colorScheme.primary),
               ),
               FaIcon(
@@ -130,7 +130,7 @@ class EditableAttachmentsWidget extends StatelessWidget {
         children: [
           const FaIcon(FontAwesomeIcons.paperclip),
           8.verticalSpace,
-          Text(context.tr(AppStrings.memoryNoAttachments)),
+          Text(context.tr(AppStrings.taskNoAttachments)),
         ],
       ),
     );

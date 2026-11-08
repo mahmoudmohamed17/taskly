@@ -37,7 +37,7 @@ class MemoryAttachmentsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              context.tr(AppStrings.memoryAttachments),
+              context.tr(AppStrings.taskAttachments),
               style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
             ),
             GestureDetector(
@@ -71,9 +71,9 @@ class MemoryAttachmentsWidget extends StatelessWidget {
           dashPattern: [7, 5],
         ),
         child: ListTile(
-          title: Text(context.tr(AppStrings.addMemoryAttachmentTitle)),
+          title: Text(context.tr(AppStrings.addTaskAttachmentTitle)),
           subtitle: Text(
-            context.tr(AppStrings.addMemoryAttachmentTypes),
+            context.tr(AppStrings.addTaskAttachmentTypes),
             style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.outline),
           ),
           trailing: const Icon(Icons.attachment),
