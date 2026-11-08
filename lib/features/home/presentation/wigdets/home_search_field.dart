@@ -8,6 +8,7 @@ import '../../../../core/di/di.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../search/cubits/search_cubit.dart';
 import '../../../search/presentation/screens/search_screen.dart';
 import 'voice_recording_dialog.dart';
 
@@ -37,7 +38,12 @@ class HomeSearchField extends StatelessWidget {
                 ),
               ),
             ),
-            openBuilder: (context, closeContainer) => const SearchScreen(),
+            openBuilder: (context, closeContainer) {
+              return BlocProvider(
+                create: (context) => getIt<SearchCubit>(),
+                child: const SearchScreen(),
+              );
+            },
           ),
         ),
         IconButton(

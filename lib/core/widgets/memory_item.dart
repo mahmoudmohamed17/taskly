@@ -17,7 +17,7 @@ class MemoryItem extends StatelessWidget {
       onTap: () => context.push(AppRoutes.memoryDetails, extra: item),
       child: Card(
         child: ListTile(
-          contentPadding: EdgeInsets.all(12.sp),
+          // contentPadding: const EdgeInsets.all(8),
           leading: Container(
             height: 48,
             width: 48,

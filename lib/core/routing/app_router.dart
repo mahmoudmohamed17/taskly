@@ -9,8 +9,8 @@ import '../../features/memory_details/presentation/cubits/memory_details_cubit.d
 import '../../features/memory_details/presentation/screens/edit_memory_screen.dart';
 import '../../features/memory_details/presentation/screens/memory_details_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
-import '../../features/search/cubits/search_cubit.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
+import '../../features/search/presentation/screens/voice_search_results_screen.dart';
 import '../cubits/app_flow_cubit.dart';
 import '../cubits/app_flow_state.dart';
 import '../di/di.dart';
@@ -59,10 +59,12 @@ class AppRouter {
         ),
         _route(
           AppRoutes.search,
-          builder: (context, state) => BlocProvider(
-            create: (_) => getIt<SearchCubit>(),
-            child: const SearchScreen(),
-          ),
+          builder: (context, state) => const SearchScreen(),
+        ),
+        _route(
+          AppRoutes.voiceSearchResults,
+          transition: PageTransitionType.fadeSlide,
+          builder: (context, state) => const VoiceSearchResultsScreen(),
         ),
         _route(
           AppRoutes.memoryDetails,

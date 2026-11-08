@@ -58,6 +58,7 @@
     "clearRecent": "مسح",
     "voiceTipTitle": "يمكنك البحث بطريقتك",
     "voiceTipDescription": "اكتب كلمات بسيطة كما تتذكرها، وسيجد أمين أقرب النتائج",
+    "voiceSearchResults": "نتائج البحث الصوتي",
     "resultsTitle": "نتائج البحث",
     "resultsCount": "{count} نتائج",
     "emptyTitle": "لا توجد نتائج مطابقة",

@@ -57,6 +57,7 @@
     "recentTitle": "Recent searches",
     "clearRecent": "Clear",
     "voiceTipTitle": "Search your way",
+    "voiceSearchResults": "Voice search results",
     "voiceTipDescription": "Type simple words as you remember them, and Ameen will find the closest results",
     "resultsTitle": "Search results",
     "resultsCount": "{count} results",

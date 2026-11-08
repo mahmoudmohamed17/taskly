@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 AppBar customAppBar({
   Widget? title,
+  TextStyle? titleTextStyle,
   List<Widget>? actions,
   bool centerTitle = false,
   bool automaticallyImplyLeading = false,
-  TextStyle? titleTextStyle,
   double elevation = 0,
 }) {
   return AppBar(

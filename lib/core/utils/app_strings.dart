@@ -56,6 +56,7 @@
   static const String searchClearRecent = 'searchPage.clearRecent';
   static const String searchVoiceTipTitle = 'searchPage.voiceTipTitle';
   static const String searchVoiceTipDescription = 'searchPage.voiceTipDescription';
+  static const String searchVoiceResults = 'searchPage.voiceSearchResults';
   static const String searchResultsTitle = 'searchPage.resultsTitle';
   static const String searchResultsCount = 'searchPage.resultsCount';
   static const String searchEmptyTitle = 'searchPage.emptyTitle';
