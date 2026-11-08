@@ -1,4 +1,4 @@
-﻿class AppStrings {
+class AppStrings {
   AppStrings._();
 
   // Common
@@ -32,14 +32,14 @@
   static const String homeGreeting = 'home.greeting';
   static const String homeHeadline = 'home.headline';
   static const String homeSearchPlaceholder = 'home.searchPlaceholder';
-  static const String homeNoMemories = 'home.noMemories';
+  static const String homeNoTasks = 'home.noTasks';
   static const String homeClearSearch = 'home.clearSearch';
   static const String homeVoiceEyebrow = 'home.voiceEyebrow';
   static const String homeVoiceTitle = 'home.voiceTitle';
   static const String homeVoiceDescription = 'home.voiceDescription';
   static const String homeStartListening = 'home.startListening';
-  static const String homeMemoriesTitle = 'home.memoriesTitle';
-  static const String homeMemoriesCount = 'home.memoriesCount';
+  static const String homeTasksTitle = 'home.tasksTitle';
+  static const String homeTasksCount = 'home.tasksCount';
   static const String homeViewAll = 'home.viewAll';
   static const String homeEmptyDescription = 'home.emptyDescription';
   static const String homePrivacyTitle = 'home.privacyTitle';
@@ -80,43 +80,43 @@
   static const String voiceNoMatch = 'voice.noMatch';
   static const String voiceServiceNotAvailable = 'voice.serviceNotAvailable';
 
-  // Memory
-  static const String memoryDetailsLabel = 'memory.detailsLabel';
-  static const String memoryDetails = 'memory.details';
-  static const String memoryAttachments = 'memory.attachments';
-  static const String memoryCreatedAt = 'memory.createdAt';
-  static const String memoryUpdatedAt = 'memory.updatedAt';
-  static const String memoryReminder = 'memory.reminder';
-  static const String memoryOpenAttachment = 'memory.openAttachment';
-  static const String memoryRecallByVoice = 'memory.recallByVoice';
-  static const String memoryNoAttachments = 'memory.noAttachments';
-  static const String memoryDeleted = 'memory.memoryDeleted';
-  static const String memoryLocalData = 'memory.localData';
+  // Task
+  static const String taskDetailsLabel = 'task.detailsLabel';
+  static const String taskDetails = 'task.details';
+  static const String taskAttachments = 'task.attachments';
+  static const String taskCreatedAt = 'task.createdAt';
+  static const String taskUpdatedAt = 'task.updatedAt';
+  static const String taskReminder = 'task.reminder';
+  static const String taskOpenAttachment = 'task.openAttachment';
+  static const String taskRecallByVoice = 'task.recallByVoice';
+  static const String taskNoAttachments = 'task.noAttachments';
+  static const String taskDeleted = 'task.taskDeleted';
+  static const String taskLocalData = 'task.localData';
 
-  // Add Memory
-  static const String addMemoryDialogLabel = 'addMemory.dialogLabel';
-  static const String addMemoryTitle = 'addMemory.title';
-  static const String addMemorySubtitle = 'addMemory.subtitle';
-  static const String addMemoryNameLabel = 'addMemory.nameLabel';
-  static const String addMemoryNamePlaceholder = 'addMemory.namePlaceholder';
-  static const String addMemoryDetailsLabel = 'addMemory.detailsLabel';
-  static const String addMemoryDetailsPlaceholder = 'addMemory.detailsPlaceholder';
-  static const String addMemoryCategoryLabel = 'addMemory.categoryLabel';
-  static const String addMemoryCategoryHint = 'addMemory.categoryHint';
-  static const String addMemoryCategoryNotSet = 'addMemory.categoryNotSet';
-  static const String addMemoryAttachmentTitle = 'addMemory.attachmentTitle';
-  static const String addMemoryAttachmentTypes = 'addMemory.attachmentTypes';
-  static const String addMemoryAttachmentCount = 'addMemory.attachmentCount';
-  static const String addMemorySave = 'addMemory.save';
-  static const String addMemorySaved = 'addMemory.saved';
+  // Add Task
+  static const String addTaskDialogLabel = 'addTask.dialogLabel';
+  static const String addTaskTitle = 'addTask.title';
+  static const String addTaskSubtitle = 'addTask.subtitle';
+  static const String addTaskNameLabel = 'addTask.nameLabel';
+  static const String addTaskNamePlaceholder = 'addTask.namePlaceholder';
+  static const String addTaskDetailsLabel = 'addTask.detailsLabel';
+  static const String addTaskDetailsPlaceholder = 'addTask.detailsPlaceholder';
+  static const String addTaskCategoryLabel = 'addTask.categoryLabel';
+  static const String addTaskCategoryHint = 'addTask.categoryHint';
+  static const String addTaskCategoryNotSet = 'addTask.categoryNotSet';
+  static const String addTaskAttachmentTitle = 'addTask.attachmentTitle';
+  static const String addTaskAttachmentTypes = 'addTask.attachmentTypes';
+  static const String addTaskAttachmentCount = 'addTask.attachmentCount';
+  static const String addTaskSave = 'addTask.save';
+  static const String addTaskSaved = 'addTask.saved';
 
-  // Edit Memory
-  static const String editMemoryTitle = 'editMemory.title';
-  static const String editMemoryUpdate = 'editMemory.update';
-  static const String editMemoryCancel = 'editMemory.cancel';
-  static const String editMemoryStatusTitle = 'editMemory.statusTitle';
-  static const String editMemoryStatusDescription = 'editMemory.statusDescription';
-  static const String editMemoryUpdatedSuccessfully = 'editMemory.updatedSuccessfully';
+  // Edit Task
+  static const String editTaskTitle = 'editTask.title';
+  static const String editTaskUpdate = 'editTask.update';
+  static const String editTaskCancel = 'editTask.cancel';
+  static const String editTaskStatusTitle = 'editTask.statusTitle';
+  static const String editTaskStatusDescription = 'editTask.statusDescription';
+  static const String editTaskUpdatedSuccessfully = 'editTask.updatedSuccessfully';
 
   // Theme
   static const String themeLight = 'theme.light';
@@ -151,10 +151,96 @@
   static const String errorCategoryRequired = 'errors.validation.categoryRequired';
   static const String errorDetailsTooLong = 'errors.validation.detailsTooLong';
 
-  // Errors - memory CRUD
-  static const String errorMemoryNotFound = 'errors.memory.notFound';
-  static const String errorMemorySaveFailed = 'errors.memory.saveFailed';
-  static const String errorMemoryUpdateFailed = 'errors.memory.updateFailed';
-  static const String errorMemoryDeleteFailed = 'errors.memory.deleteFailed';
-  static const String errorMemoryAttachmentFailed = 'errors.memory.attachmentFailed';
+  // Errors - task CRUD
+  static const String errorTaskNotFound = 'errors.task.notFound';
+  static const String errorTaskSaveFailed = 'errors.task.saveFailed';
+  static const String errorTaskUpdateFailed = 'errors.task.updateFailed';
+  static const String errorTaskDeleteFailed = 'errors.task.deleteFailed';
+  static const String errorTaskAttachmentFailed = 'errors.task.attachmentFailed';
+
+  // ── Backward-compatibility aliases for memory ──
+  @Deprecated('Use homeNoTasks instead')
+  static const String homeNoMemories = homeNoTasks;
+  @Deprecated('Use homeTasksTitle instead')
+  static const String homeMemoriesTitle = homeTasksTitle;
+  @Deprecated('Use homeTasksCount instead')
+  static const String homeMemoriesCount = homeTasksCount;
+
+  @Deprecated('Use taskDetailsLabel instead')
+  static const String memoryDetailsLabel = taskDetailsLabel;
+  @Deprecated('Use taskDetails instead')
+  static const String memoryDetails = taskDetails;
+  @Deprecated('Use taskAttachments instead')
+  static const String memoryAttachments = taskAttachments;
+  @Deprecated('Use taskCreatedAt instead')
+  static const String memoryCreatedAt = taskCreatedAt;
+  @Deprecated('Use taskUpdatedAt instead')
+  static const String memoryUpdatedAt = taskUpdatedAt;
+  @Deprecated('Use taskReminder instead')
+  static const String memoryReminder = taskReminder;
+  @Deprecated('Use taskOpenAttachment instead')
+  static const String memoryOpenAttachment = taskOpenAttachment;
+  @Deprecated('Use taskRecallByVoice instead')
+  static const String memoryRecallByVoice = taskRecallByVoice;
+  @Deprecated('Use taskNoAttachments instead')
+  static const String memoryNoAttachments = taskNoAttachments;
+  @Deprecated('Use taskDeleted instead')
+  static const String memoryDeleted = taskDeleted;
+  @Deprecated('Use taskLocalData instead')
+  static const String memoryLocalData = taskLocalData;
+
+  @Deprecated('Use addTaskDialogLabel instead')
+  static const String addMemoryDialogLabel = addTaskDialogLabel;
+  @Deprecated('Use addTaskTitle instead')
+  static const String addMemoryTitle = addTaskTitle;
+  @Deprecated('Use addTaskSubtitle instead')
+  static const String addMemorySubtitle = addTaskSubtitle;
+  @Deprecated('Use addTaskNameLabel instead')
+  static const String addMemoryNameLabel = addTaskNameLabel;
+  @Deprecated('Use addTaskNamePlaceholder instead')
+  static const String addMemoryNamePlaceholder = addTaskNamePlaceholder;
+  @Deprecated('Use addTaskDetailsLabel instead')
+  static const String addMemoryDetailsLabel = addTaskDetailsLabel;
+  @Deprecated('Use addTaskDetailsPlaceholder instead')
+  static const String addMemoryDetailsPlaceholder = addTaskDetailsPlaceholder;
+  @Deprecated('Use addTaskCategoryLabel instead')
+  static const String addMemoryCategoryLabel = addTaskCategoryLabel;
+  @Deprecated('Use addTaskCategoryHint instead')
+  static const String addMemoryCategoryHint = addTaskCategoryHint;
+  @Deprecated('Use addTaskCategoryNotSet instead')
+  static const String addMemoryCategoryNotSet = addTaskCategoryNotSet;
+  @Deprecated('Use addTaskAttachmentTitle instead')
+  static const String addMemoryAttachmentTitle = addTaskAttachmentTitle;
+  @Deprecated('Use addTaskAttachmentTypes instead')
+  static const String addMemoryAttachmentTypes = addTaskAttachmentTypes;
+  @Deprecated('Use addTaskAttachmentCount instead')
+  static const String addMemoryAttachmentCount = addTaskAttachmentCount;
+  @Deprecated('Use addTaskSave instead')
+  static const String addMemorySave = addTaskSave;
+  @Deprecated('Use addTaskSaved instead')
+  static const String addMemorySaved = addTaskSaved;
+
+  @Deprecated('Use editTaskTitle instead')
+  static const String editMemoryTitle = editTaskTitle;
+  @Deprecated('Use editTaskUpdate instead')
+  static const String editMemoryUpdate = editTaskUpdate;
+  @Deprecated('Use editTaskCancel instead')
+  static const String editMemoryCancel = editTaskCancel;
+  @Deprecated('Use editTaskStatusTitle instead')
+  static const String editMemoryStatusTitle = editTaskStatusTitle;
+  @Deprecated('Use editTaskStatusDescription instead')
+  static const String editMemoryStatusDescription = editTaskStatusDescription;
+  @Deprecated('Use editTaskUpdatedSuccessfully instead')
+  static const String editMemoryUpdatedSuccessfully = editTaskUpdatedSuccessfully;
+
+  @Deprecated('Use errorTaskNotFound instead')
+  static const String errorMemoryNotFound = errorTaskNotFound;
+  @Deprecated('Use errorTaskSaveFailed instead')
+  static const String errorMemorySaveFailed = errorTaskSaveFailed;
+  @Deprecated('Use errorTaskUpdateFailed instead')
+  static const String errorMemoryUpdateFailed = errorTaskUpdateFailed;
+  @Deprecated('Use errorTaskDeleteFailed instead')
+  static const String errorMemoryDeleteFailed = errorTaskDeleteFailed;
+  @Deprecated('Use errorTaskAttachmentFailed instead')
+  static const String errorMemoryAttachmentFailed = errorTaskAttachmentFailed;
 }

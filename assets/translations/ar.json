@@ -1,7 +1,7 @@
-﻿{
+{
   "common": {
-    "appName": "ذاكرتك الشخصية",
-    "tagline": "ذاكرتك الثانية الآمنة",
+    "appName": "تاسكلي",
+    "tagline": "منظّم مهامك الآمن",
     "close": "إغلاق",
     "next": "التالي",
     "back": "السابق",
@@ -17,48 +17,51 @@
     "step1": {
       "title": "احفظ ما يهم",
       "subTitle": "كل تفاصيل حياتك في مكان واحد",
-      "description": "احفظ الأدوية والمواعيد والأرقام والملاحظات مع الصور والملفات، ونظّمها ببساطة."
+      "description": "احفظ المهام والمواعيد والأرقام والملاحظات مع الصور والملفات، ونظّمها ببساطة."
     },
     "step2": {
-      "title": "استرجاع فوري",
-      "subTitle": "قل اسم الذكرى فقط",
-      "description": "تحدّث بطريقتك الطبيعية، وسيجد أمين الذكرى المناسبة حتى لو لم تتذكر اسمها بدقة."
+      "title": "وصول فوري",
+      "subTitle": "قل اسم المهمة فقط",
+      "description": "تحدّث بطريقتك الطبيعية، وسيجد أمين المهمة المناسبة حتى لو لم تتذكر اسمها بدقة."
     },
     "step3": {
       "title": "خصوصية حقيقية",
-      "subTitle": "ذكرياتك تبقى لك وحدك",
+      "subTitle": "مهامك تبقى لك وحدك",
       "description": "تعيش بياناتك مشفرة على جهازك، وتعمل دون إنترنت، وتحميها بصمتك أو رمزك السري."
     }
   },
   "home": {
     "greeting": "مرحباً، كيف حالك اليوم!",
-    "headline": "ماذا تريد أن تتذكّر؟",
-    "searchPlaceholder": "ابحث في ذكرياتك...",
-    "noMemories": "لا توجد ذكريات محفوظة",
+    "headline": "ماذا تريد أن تنجز اليوم؟",
+    "searchPlaceholder": "ابحث في مهامك...",
+    "noTasks": "لا توجد مهام محفوظة",
+    "noMemories": "لا توجد مهام محفوظة",
     "clearSearch": "مسح البحث",
     "voiceEyebrow": "الأسرع والأبسط",
-    "voiceTitle": "استرجع ذكرى بصوتك",
+    "voiceTitle": "ابحث عن مهمة بصوتك",
     "voiceDescription": "اضغط وتحدّث، وسأجدها لك فوراً",
     "startListening": "ابدأ الاستماع",
-    "memoriesTitle": "ذكرياتك",
-    "memoriesCount": "{{count}} ذكريات محفوظة",
+    "tasksTitle": "مهامك",
+    "memoriesTitle": "مهامك",
+    "tasksCount": "{{count}} مهام محفوظة",
+    "memoriesCount": "{{count}} مهام محفوظة",
     "viewAll": "عرض الكل",
     "emptyDescription": "جرّب كلمة أخرى أو اختر تصنيفاً مختلفاً",
     "privacyTitle": "خصوصيتك أولاً، دائماً",
-    "privacyDescription": "كل ذكرياتك مشفرة ومحفوظة على جهازك فقط. لا نراها ولا نشاركها."
+    "privacyDescription": "كل مهامك مشفرة ومحفوظة على جهازك فقط. لا نراها ولا نشاركها."
   },
   "searchPage": {
-    "label": "البحث في الذكريات",
+    "label": "البحث في المهام",
     "back": "العودة",
     "title": "البحث",
-    "subtitle": "كل ذكرياتك في متناولك",
+    "subtitle": "كل مهامك في متناولك",
     "promptTitle": "ما الذي تبحث عنه؟",
-    "promptDescription": "ابحث باسم الذكرى أو أي تفصيل تتذكره منها",
+    "promptDescription": "ابحث باسم المهمة أو أي تفصيل تتذكره منها",
     "recentTitle": "عمليات البحث الأخيرة",
     "clearRecent": "مسح",
     "voiceTipTitle": "يمكنك البحث بطريقتك",
-    "voiceTipDescription": "اكتب كلمات بسيطة كما تتذكرها، وسيجد أمين أقرب النتائج",
     "voiceSearchResults": "نتائج البحث الصوتي",
+    "voiceTipDescription": "اكتب كلمات بسيطة كما تتذكرها، وسيجد أمين أقرب النتائج",
     "resultsTitle": "نتائج البحث",
     "resultsCount": "{count} نتائج",
     "emptyTitle": "لا توجد نتائج مطابقة",
@@ -75,50 +78,88 @@
     "other": "أخرى"
   },
   "voice": {
-    "dialogLabel": "استدعاء ذكرى بالصوت",
+    "dialogLabel": "البحث عن مهمة بالصوت",
     "title": "أنا أستمع إليك",
-    "description": "قل اسم الذكرى التي تريد استرجاعها",
+    "description": "قل اسم المهمة التي تريد إيجادها",
     "listening": "جارٍ الاستماع...",
-    "noMatch": "لم أجد ذكرى مطابقة، حاول مرة أخرى",
+    "noMatch": "لم أجد مهمة مطابقة، حاول مرة أخرى",
     "serviceNotAvailable": "خدمة تسجيل الصوت غير متوفرة"
   },
-  "memory": {
-    "detailsLabel": "تفاصيل الذكرى",
+  "task": {
+    "detailsLabel": "تفاصيل المهمة",
     "details": "التفاصيل",
     "attachments": "المرفقات",
     "createdAt": "تاريخ الإضافة",
     "updatedAt": "آخر تحديث",
     "reminder": "التذكير",
     "openAttachment": "فتح المرفق",
-    "recallByVoice": "استدعِ هذه الذكرى بصوتك",
+    "recallByVoice": "استدعِ هذه المهمة بصوتك",
     "noAttachments": "لا توجد مرفقات",
     "localData": "بياناتك محفوظة محلياً",
-    "memoryDeleted": "تم حذف الذكرى بنجاح"
+    "taskDeleted": "تم حذف المهمة بنجاح"
   },
-  "addMemory": {
-    "dialogLabel": "إضافة ذكرى",
-    "title": "ذكرى جديدة",
+  "memory": {
+    "detailsLabel": "تفاصيل المهمة",
+    "details": "التفاصيل",
+    "attachments": "المرفقات",
+    "createdAt": "تاريخ الإضافة",
+    "updatedAt": "آخر تحديث",
+    "reminder": "التذكير",
+    "openAttachment": "فتح المرفق",
+    "recallByVoice": "استدعِ هذه المهمة بصوتك",
+    "noAttachments": "لا توجد مرفقات",
+    "localData": "بياناتك محفوظة محلياً",
+    "memoryDeleted": "تم حذف المهمة بنجاح"
+  },
+  "addTask": {
+    "dialogLabel": "إضافة مهمة",
+    "title": "مهمة جديدة",
     "subtitle": "احفظ ما يهمك لتجده في لحظة",
-    "nameLabel": "اسم الذكرى",
+    "nameLabel": "اسم المهمة",
     "namePlaceholder": "مثال: موعد طبيب الوالدة",
     "detailsLabel": "التفاصيل",
-    "detailsPlaceholder": "اكتب كل ما تريد تذكره...",
-    "categoryLabel": "تصنيف الذكرى",
+    "detailsPlaceholder": "اكتب كل تفاصيل المهمة...",
+    "categoryLabel": "تصنيف المهمة",
     "categoryHint": "اختر التصنيف الأنسب لتجدها بسهولة",
     "categoryNotSet": "لم يتم اختيار تصنيف",
     "attachmentTitle": "إضافة مرفق",
     "attachmentTypes": "صورة، ملف أو تسجيل صوتي",
     "attachmentCount": "تم اختيار {count} ملفات",
-    "save": "حفظ الذكرى",
+    "save": "حفظ المهمة",
     "saved": "تم الحفظ بأمان"
   },
-  "editMemory": {
-    "title": "تعديل الذكرى",
+  "addMemory": {
+    "dialogLabel": "إضافة مهمة",
+    "title": "مهمة جديدة",
+    "subtitle": "احفظ ما يهمك لتجده في لحظة",
+    "nameLabel": "اسم المهمة",
+    "namePlaceholder": "مثال: موعد طبيب الوالدة",
+    "detailsLabel": "التفاصيل",
+    "detailsPlaceholder": "اكتب كل تفاصيل المهمة...",
+    "categoryLabel": "تصنيف المهمة",
+    "categoryHint": "اختر التصنيف الأنسب لتجدها بسهولة",
+    "categoryNotSet": "لم يتم اختيار تصنيف",
+    "attachmentTitle": "إضافة مرفق",
+    "attachmentTypes": "صورة، ملف أو تسجيل صوتي",
+    "attachmentCount": "تم اختيار {count} ملفات",
+    "save": "حفظ المهمة",
+    "saved": "تم الحفظ بأمان"
+  },
+  "editTask": {
+    "title": "تعديل المهمة",
     "update": "تحديث",
     "cancel": "إلغاء",
-    "statusTitle": "بيانات الذكرى",
+    "statusTitle": "بيانات المهمة",
     "statusDescription": "سيتم حفظ تغييراتك محلياً وبشكل مشفر",
-    "updatedSuccessfully": "تم التحديث بنجاح!" 
+    "updatedSuccessfully": "تم تحديث المهمة بنجاح!"
+  },
+  "editMemory": {
+    "title": "تعديل المهمة",
+    "update": "تحديث",
+    "cancel": "إلغاء",
+    "statusTitle": "بيانات المهمة",
+    "statusDescription": "سيتم حفظ تغييراتك محلياً وبشكل مشفر",
+    "updatedSuccessfully": "تم تحديث المهمة بنجاح!"
   },
   "theme": {
     "light": "الوضع النهاري",
@@ -147,16 +188,23 @@
       "recognitionFailed": "تعذّر التعرف على صوتك. يرجى المحاولة مجددًا."
     },
     "validation": {
-      "titleRequired": "يرجى إدخال اسم لهذه الذكرى.",
+      "titleRequired": "يرجى إدخال اسم لهذه المهمة.",
       "titleTooLong": "الاسم طويل جدًا. يرجى تقصيره.",
       "categoryRequired": "يرجى اختيار تصنيف.",
       "detailsTooLong": "التفاصيل طويلة جدًا. يرجى تقصيرها."
     },
+    "task": {
+      "notFound": "هذه المهمة لم تعد موجودة.",
+      "saveFailed": "تعذّر حفظ المهمة. يرجى المحاولة مجددًا.",
+      "updateFailed": "تعذّر تحديث المهمة. يرجى المحاولة مجددًا.",
+      "deleteFailed": "تعذّر حذف المهمة. يرجى المحاولة مجددًا.",
+      "attachmentFailed": "تعذّر إرفاق الملف. يرجى المحاولة مجددًا."
+    },
     "memory": {
-      "notFound": "هذه الذكرى لم تعد موجودة.",
-      "saveFailed": "تعذّر حفظ الذكرى. يرجى المحاولة مجددًا.",
-      "updateFailed": "تعذّر تحديث الذكرى. يرجى المحاولة مجددًا.",
-      "deleteFailed": "تعذّر حذف الذكرى. يرجى المحاولة مجددًا.",
+      "notFound": "هذه المهمة لم تعد موجودة.",
+      "saveFailed": "تعذّر حفظ المهمة. يرجى المحاولة مجددًا.",
+      "updateFailed": "تعذّر تحديث المهمة. يرجى المحاولة مجددًا.",
+      "deleteFailed": "تعذّر حذف المهمة. يرجى المحاولة مجددًا.",
       "attachmentFailed": "تعذّر إرفاق الملف. يرجى المحاولة مجددًا."
     }
   }

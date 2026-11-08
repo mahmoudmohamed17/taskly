@@ -8,6 +8,6 @@ abstract class LocaleManager {
     Locale('en'),
   ];
 
-  static Locale get initialLocale => const Locale('ar');
-  static Locale get fallbackLocale => const Locale('en');
+  static Locale get initialLocale => const Locale('en');
+  static Locale get fallbackLocale => const Locale('ar');
 }

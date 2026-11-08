@@ -29,8 +29,8 @@ class MemoryCreationForm extends StatelessWidget {
         children: [
           CustomTextFormField(
             controller: title,
-            hint: AppStrings.addMemoryNamePlaceholder,
-            label: AppStrings.addMemoryNameLabel,
+            hint: AppStrings.addTaskNamePlaceholder,
+            label: AppStrings.addTaskNameLabel,
             validator: (value) {
               final error = Validators.requiredField(value);
               return error != null ? context.tr(error) : null;
@@ -39,8 +39,8 @@ class MemoryCreationForm extends StatelessWidget {
           ),
           CustomTextFormField(
             controller: description,
-            hint: AppStrings.addMemoryDetailsPlaceholder,
-            label: AppStrings.addMemoryDetailsLabel,
+            hint: AppStrings.addTaskDetailsPlaceholder,
+            label: AppStrings.addTaskDetailsLabel,
             validator: (value) {
               final error = Validators.requiredField(value);
               return error != null ? context.tr(error) : null;

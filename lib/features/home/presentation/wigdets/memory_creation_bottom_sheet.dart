@@ -65,7 +65,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
       listener: (context, state) {
         if (state is AddMemorySuccess) {
           context.pop();
-          AppToast.success(context.tr(AppStrings.addMemorySaved));
+          AppToast.success(context.tr(AppStrings.addTaskSaved));
         } else if (state is AddMemoryError) {
           AppToast.error(context.tr(state.message));
         }
@@ -105,7 +105,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
                       final showError = value == false;
                       return showError
                           ? Text(
-                              context.tr(AppStrings.addMemoryCategoryNotSet),
+                              context.tr(AppStrings.addTaskCategoryNotSet),
                               style: context.textTheme.labelMedium?.copyWith(
                                 color: context.colorScheme.error,
                               ),
@@ -117,7 +117,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
               ),
               const MemoryAttachmentsWidget(),
               CustomElevatedButton(
-                text: AppStrings.addMemorySave,
+                text: AppStrings.addTaskSave,
                 onPressed: _addCategory,
                 icon: const Icon(Icons.lock),
                 iconAlignment: IconAlignment.end,
@@ -134,13 +134,13 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
   Widget _header(BuildContext context) {
     return ListTile(
       title: Text(
-        context.tr(AppStrings.addMemoryTitle),
+        context.tr(AppStrings.addTaskTitle),
         style: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w600,
         ),
       ),
       subtitle: Text(
-        context.tr(AppStrings.addMemorySubtitle),
+        context.tr(AppStrings.addTaskSubtitle),
         style: context.textTheme.bodyMedium?.copyWith(color: context.colorScheme.outline),
       ),
       trailing: GestureDetector(

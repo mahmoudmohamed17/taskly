@@ -29,7 +29,7 @@ class MemoryDetailsScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is MemoryDetailsDeleted) {
           context.pop();
-          AppToast.info(context.tr(AppStrings.memoryDeleted));
+          AppToast.info(context.tr(AppStrings.taskDeleted));
         } else if (state is MemoryDetailsError) {
           AppToast.error(context.tr(state.message));
         }
@@ -40,7 +40,7 @@ class MemoryDetailsScreen extends StatelessWidget {
 
           return Scaffold(
             appBar: customAppBar(
-              title: Text(context.tr(AppStrings.memoryDetailsLabel)),
+              title: Text(context.tr(AppStrings.taskDetailsLabel)),
               automaticallyImplyLeading: true,
               centerTitle: true,
               actions: [

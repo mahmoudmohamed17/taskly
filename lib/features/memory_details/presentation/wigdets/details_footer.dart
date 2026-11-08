@@ -27,7 +27,7 @@ class DetailsFooter extends StatelessWidget {
               context,
               icon: Icons.calendar_month_rounded,
               title: Text(
-                context.tr(AppStrings.memoryCreatedAt),
+                context.tr(AppStrings.taskCreatedAt),
                 style: context.textTheme.labelSmall?.copyWith(color: context.colorScheme.outline),
               ),
               subTitle: Text(
@@ -43,7 +43,7 @@ class DetailsFooter extends StatelessWidget {
               context,
               icon: Icons.shield_outlined,
               title: Text(
-                context.tr(AppStrings.memoryLocalData),
+                context.tr(AppStrings.taskLocalData),
                 style: context.textTheme.labelMedium,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

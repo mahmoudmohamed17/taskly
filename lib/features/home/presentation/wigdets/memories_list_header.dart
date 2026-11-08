@@ -16,7 +16,7 @@ class MemoriesListHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          context.tr(AppStrings.homeMemoriesTitle),
+          context.tr(AppStrings.homeTasksTitle),
           style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500),
         ),
         if (count > 7)

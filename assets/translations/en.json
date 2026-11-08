@@ -1,7 +1,7 @@
-﻿{
+{
   "common": {
-    "appName": "Personal Memory",
-    "tagline": "Your secure second memory",
+    "appName": "Taskly",
+    "tagline": "Your secure task organizer",
     "close": "Close",
     "next": "Next",
     "back": "Back",
@@ -17,43 +17,46 @@
     "step1": {
       "title": "SAVE WHAT MATTERS",
       "subTitle": "Every important detail in one place",
-      "description": "Save medication, appointments, numbers, and notes with photos and files, then organize them with ease."
+      "description": "Save tasks, appointments, numbers, and notes with photos and files, then organize them with ease."
     },
     "step2": {
-      "title": "INSTANT RECALL",
-      "subTitle": "Just say the memory's name",
-      "description": "Speak naturally and Ameen will find the right memory, even when you do not remember its exact name."
+      "title": "INSTANT ACCESS",
+      "subTitle": "Just say the task's name",
+      "description": "Speak naturally and Ameen will find the right task, even when you do not remember its exact name."
     },
     "step3": {
       "title": "TRUE PRIVACY",
-      "subTitle": "Your memories remain yours",
+      "subTitle": "Your tasks remain yours",
       "description": "Your data stays encrypted on your device, works offline, and is protected by your biometrics or PIN."
     }
   },
   "home": {
     "greeting": "Hello, how are you today?",
-    "headline": "What would you like to remember?",
-    "searchPlaceholder": "Search your memories...",
-    "noMemories": "No memories found",
+    "headline": "What would you like to accomplish?",
+    "searchPlaceholder": "Search your tasks...",
+    "noTasks": "No tasks found",
+    "noMemories": "No tasks found",
     "clearSearch": "Clear search",
     "voiceEyebrow": "FASTEST AND EASIEST",
-    "voiceTitle": "Recall a memory by voice",
+    "voiceTitle": "Find a task by voice",
     "voiceDescription": "Tap and speak, and I will find it right away",
     "startListening": "Start listening",
-    "memoriesTitle": "Your memories",
-    "memoriesCount": "{{count}} saved memories",
+    "tasksTitle": "Your tasks",
+    "memoriesTitle": "Your tasks",
+    "tasksCount": "{{count}} saved tasks",
+    "memoriesCount": "{{count}} saved tasks",
     "viewAll": "View all",
     "emptyDescription": "Try another word or choose a different category",
     "privacyTitle": "Your privacy comes first, always",
-    "privacyDescription": "All your memories are encrypted and stored only on your device. We cannot see or share them."
+    "privacyDescription": "All your tasks are encrypted and stored only on your device. We cannot see or share them."
   },
   "searchPage": {
-    "label": "Search memories",
+    "label": "Search tasks",
     "back": "Back",
     "title": "Search",
-    "subtitle": "All your memories within reach",
+    "subtitle": "All your tasks within reach",
     "promptTitle": "What are you looking for?",
-    "promptDescription": "Search by the memory name or any detail you remember",
+    "promptDescription": "Search by task name or any detail you remember",
     "recentTitle": "Recent searches",
     "clearRecent": "Clear",
     "voiceTipTitle": "Search your way",
@@ -75,50 +78,88 @@
     "other": "Other"
   },
   "voice": {
-    "dialogLabel": "Recall a memory by voice",
+    "dialogLabel": "Find a task by voice",
     "title": "I am listening",
-    "description": "Say the name of the memory you want to recall",
+    "description": "Say the name of the task you want to find",
     "listening": "Listening...",
-    "noMatch": "I could not find a matching memory. Please try again.",
+    "noMatch": "I could not find a matching task. Please try again.",
     "serviceNotAvailable": "Voice recording is not available"
   },
-  "memory": {
-    "detailsLabel": "Memory details",
+  "task": {
+    "detailsLabel": "Task details",
     "details": "Details",
     "attachments": "Attachments",
     "createdAt": "Date added",
     "updatedAt": "Last updated",
     "reminder": "Reminder",
     "openAttachment": "Open attachment",
-    "recallByVoice": "Recall this memory by voice",
+    "recallByVoice": "Find this task by voice",
     "noAttachments": "No attachments",
-    "localData": "Your data is stored locally",
-    "memoryDeleted": "Memory deleted successfully"
+    "localData": "Locally saved",
+    "taskDeleted": "Task deleted successfully"
   },
-  "addMemory": {
-    "dialogLabel": "Add memory",
-    "title": "New memory",
+  "memory": {
+    "detailsLabel": "Task details",
+    "details": "Details",
+    "attachments": "Attachments",
+    "createdAt": "Date added",
+    "updatedAt": "Last updated",
+    "reminder": "Reminder",
+    "openAttachment": "Open attachment",
+    "recallByVoice": "Find this task by voice",
+    "noAttachments": "No attachments",
+    "localData": "Locally saved",
+    "memoryDeleted": "Task deleted successfully"
+  },
+  "addTask": {
+    "dialogLabel": "Add task",
+    "title": "New task",
     "subtitle": "Save what matters and find it in seconds",
-    "nameLabel": "Memory name",
+    "nameLabel": "Task name",
     "namePlaceholder": "Example: Mom's doctor appointment",
     "detailsLabel": "Details",
-    "detailsPlaceholder": "Write everything you want to remember...",
-    "categoryLabel": "Memory category",
+    "detailsPlaceholder": "Write details about this task...",
+    "categoryLabel": "Task category",
     "categoryHint": "Choose the best category to find it easily",
     "categoryNotSet": "Category not set",
     "attachmentTitle": "Add attachment",
     "attachmentTypes": "Photo, file, or voice recording",
     "attachmentCount": "{count} files selected",
-    "save": "Save memory",
+    "save": "Save task",
     "saved": "Saved securely"
   },
-  "editMemory": {
-    "title": "Edit memory",
+  "addMemory": {
+    "dialogLabel": "Add task",
+    "title": "New task",
+    "subtitle": "Save what matters and find it in seconds",
+    "nameLabel": "Task name",
+    "namePlaceholder": "Example: Mom's doctor appointment",
+    "detailsLabel": "Details",
+    "detailsPlaceholder": "Write details about this task...",
+    "categoryLabel": "Task category",
+    "categoryHint": "Choose the best category to find it easily",
+    "categoryNotSet": "Category not set",
+    "attachmentTitle": "Add attachment",
+    "attachmentTypes": "Photo, file, or voice recording",
+    "attachmentCount": "{count} files selected",
+    "save": "Save task",
+    "saved": "Saved securely"
+  },
+  "editTask": {
+    "title": "Edit task",
     "update": "Update",
     "cancel": "Cancel",
-    "statusTitle": "Memory data",
+    "statusTitle": "Task data",
     "statusDescription": "Your changes will be saved locally and encrypted",
-    "updatedSuccessfully": "Memory updated successfully!" 
+    "updatedSuccessfully": "Task updated successfully!"
+  },
+  "editMemory": {
+    "title": "Edit task",
+    "update": "Update",
+    "cancel": "Cancel",
+    "statusTitle": "Task data",
+    "statusDescription": "Your changes will be saved locally and encrypted",
+    "updatedSuccessfully": "Task updated successfully!"
   },
   "theme": {
     "light": "Light mode",
@@ -147,16 +188,23 @@
       "recognitionFailed": "Could not recognise your voice. Please try again."
     },
     "validation": {
-      "titleRequired": "Please enter a name for this memory.",
+      "titleRequired": "Please enter a name for this task.",
       "titleTooLong": "The name is too long. Please shorten it.",
       "categoryRequired": "Please select a category.",
       "detailsTooLong": "The details are too long. Please shorten them."
     },
+    "task": {
+      "notFound": "This task no longer exists.",
+      "saveFailed": "Could not save the task. Please try again.",
+      "updateFailed": "Could not update the task. Please try again.",
+      "deleteFailed": "Could not delete the task. Please try again.",
+      "attachmentFailed": "Could not attach the file. Please try again."
+    },
     "memory": {
-      "notFound": "This memory no longer exists.",
-      "saveFailed": "Could not save the memory. Please try again.",
-      "updateFailed": "Could not update the memory. Please try again.",
-      "deleteFailed": "Could not delete the memory. Please try again.",
+      "notFound": "This task no longer exists.",
+      "saveFailed": "Could not save the task. Please try again.",
+      "updateFailed": "Could not update the task. Please try again.",
+      "deleteFailed": "Could not delete the task. Please try again.",
       "attachmentFailed": "Could not attach the file. Please try again."
     }
   }

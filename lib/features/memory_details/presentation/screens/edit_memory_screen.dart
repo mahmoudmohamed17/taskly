@@ -80,14 +80,14 @@ class _EditMemoryScreenState extends State<EditMemoryScreen> {
           _checkIfUpdated();
         } else if (state is EditMemorySuccess) {
           context.pop();
-          AppToast.success(context.tr(AppStrings.editMemoryUpdatedSuccessfully));
+          AppToast.success(context.tr(AppStrings.editTaskUpdatedSuccessfully));
         } else if (state is EditMemoryError) {
-          AppToast.error(context.tr(AppStrings.errorMemoryUpdateFailed));
+          AppToast.error(context.tr(AppStrings.errorTaskUpdateFailed));
         }
       },
       child: Scaffold(
         appBar: customAppBar(
-          title: Text(context.tr(AppStrings.editMemoryTitle)),
+          title: Text(context.tr(AppStrings.editTaskTitle)),
           automaticallyImplyLeading: true,
         ),
         body: ListView(
@@ -112,7 +112,7 @@ class _EditMemoryScreenState extends State<EditMemoryScreen> {
                 return CustomElevatedButton(
                   onPressed: isUpdated ? _onUpdate : null,
                   width: double.infinity,
-                  text: AppStrings.editMemoryUpdate,
+                  text: AppStrings.editTaskUpdate,
                   icon: const Icon(Icons.check),
                   backgroundColor: isUpdated
                       ? null

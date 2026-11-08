@@ -33,7 +33,7 @@ class AppConfig {
     instance = AppConfig._(
       env: env,
       baseUrl: dotenv.get('BASE_URL'), // throws if the key is missing
-      appName: dotenv.get('APP_NAME', fallback: 'Memory Reminder'),
+      appName: dotenv.get('APP_NAME', fallback: 'Taskly'),
     );
   }
 }
