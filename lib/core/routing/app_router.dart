@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/cubits/memories_list_cubit.dart';
+import '../../features/home/cubits/tasks_list_cubit.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/task_details/presentation/cubits/edit_memory_cubit.dart';
 import '../../features/task_details/presentation/cubits/memory_details_cubit.dart';
@@ -12,7 +12,6 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/search/presentation/screens/voice_search_results_screen.dart';
 import '../cubits/app_flow_cubit.dart';
-import '../cubits/app_flow_state.dart';
 import '../di/di.dart';
 import '../models/task_model.dart';
 import 'app_routes.dart';
@@ -29,22 +28,7 @@ class AppRouter {
     return GoRouter(
       // Re-evaluates redirect every time AppFlowCubit emits a new state.
       refreshListenable: GoRouterListenableBuilder(appFlowCubit.stream),
-      redirect: (context, state) {
-        final flowState = appFlowCubit.state;
-        final currentPath = state.matchedLocation;
-
-        // Guard: onboarding not done → always land on onboarding.
-        if (flowState == AppFlowState.onboarding && currentPath != AppRoutes.onboarding) {
-          return AppRoutes.onboarding;
-        }
-
-        // Guard: onboarding done → never show onboarding again.
-        if (flowState == AppFlowState.home && currentPath == AppRoutes.onboarding) {
-          return AppRoutes.home;
-        }
-
-        return null; // no redirect needed
-      },
+      redirect: (context, state) => appFlowCubit.resolveRedirect(state.matchedLocation),
       routes: [
         _route(
           AppRoutes.onboarding,
@@ -53,7 +37,7 @@ class AppRouter {
         _route(
           AppRoutes.home,
           builder: (context, state) => BlocProvider(
-            create: (_) => getIt<MemoriesListCubit>()..watch(),
+            create: (_) => getIt<TasksListCubit>()..watch(),
             child: const HomeScreen(),
           ),
         ),

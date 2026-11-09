@@ -8,19 +8,21 @@ import '../../../core/models/task_attachment_input.dart';
 import '../../../core/repositories/task_repository.dart';
 import '../../../core/utils/enums.dart';
 
-part 'add_memory_state.dart';
+part 'add_task_state.dart';
 
 @injectable
-class AddMemoryCubit extends Cubit<AddMemoryState> {
+class AddTaskCubit extends Cubit<AddTaskState> {
   final TaskRepository _repo;
   final List<TaskAttachmentInput> _selectedAttachments = [];
 
-  AddMemoryCubit(this._repo) : super(const AddMemoryInitial());
+  AddTaskCubit(this._repo) : super(const AddTaskInitial());
 
   Future<void> pickAttachments() async {
     final List<PlatformFile> files = await FilePicker.pickFiles();
 
     if (files.isEmpty) return;
+
+    emit(const AddTaskAttachmentsLoading());
 
     for (final file in files) {
       final path = file.path;
@@ -37,33 +39,33 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
         ),
       );
     }
-    emit(AddMemoryAttachmentsUpdated(_selectedAttachments));
+    emit(AddTaskAttachmentsUpdated(_selectedAttachments));
   }
 
   Future<void> removeAttachment(TaskAttachmentInput input) async {
     _selectedAttachments.removeWhere((item) => item == input);
-    emit(AddMemoryAttachmentsUpdated(_selectedAttachments));
+    emit(AddTaskAttachmentsUpdated(_selectedAttachments));
   }
 
-  /// Inserts a new memory and emits [AddMemorySuccess] with the generated id.
+  /// Inserts a new memory and emits [AddTaskSuccess] with the generated id.
   Future<void> addMemory({
     required String title,
     required String description,
     required TaskCategory category,
     List<TaskAttachmentInput>? attachments,
   }) async {
-    emit(const AddMemoryLoading());
+    emit(const AddTaskLoading());
     final result = await _repo.addTask(
       title: title,
       description: description,
       category: category,
     );
     await result.fold(
-      (error) async => emit(AddMemoryError(error.messageKey)),
+      (error) async => emit(AddTaskError(error.messageKey)),
       (id) async {
         addAttachments(id);
         _selectedAttachments.clear();
-        emit(AddMemorySuccess(newMemoryId: id));
+        emit(AddTaskSuccess(newMemoryId: id));
       },
     );
   }
@@ -79,7 +81,7 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
     final hasError = attachmentsResult.fold((_) => true, (_) => false);
     if (hasError) {
       attachmentsResult.fold(
-        (error) => emit(AddMemoryError(error.messageKey)),
+        (error) => emit(AddTaskError(error.messageKey)),
         (_) {},
       );
       return;
@@ -97,14 +99,14 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
       attachment: attachment,
     );
     result.fold(
-      (error) => emit(AddMemoryError(error.messageKey)),
+      (error) => emit(AddTaskError(error.messageKey)),
       (_) {},
     );
   }
 
-  /// Resets to [AddMemoryInitial] so the form can be reused in the same session.
+  /// Resets to [AddTaskInitial] so the form can be reused in the same session.
   void reset() {
     _selectedAttachments.clear();
-    emit(const AddMemoryInitial());
+    emit(const AddTaskInitial());
   }
 }

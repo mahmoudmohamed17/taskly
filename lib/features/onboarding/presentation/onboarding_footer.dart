@@ -31,7 +31,7 @@ class OnboardingFooter extends StatelessWidget {
         SmoothPageIndicator(
           controller: controller,
           count: total,
-          effect: WormEffect(
+          effect: SlideEffect(
             activeDotColor: context.colorScheme.primary,
             dotColor: context.colorScheme.outline.withValues(alpha: 0.50),
             spacing: 12.w,

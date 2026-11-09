@@ -9,7 +9,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/models/task_model.dart';
 import '../../../../core/widgets/task_item.dart';
-import '../../cubits/memories_list_cubit.dart';
+import '../../cubits/tasks_list_cubit.dart';
 import 'tasks_list_header.dart';
 import '../../../../core/widgets/skeletonizer_widget.dart';
 
@@ -18,12 +18,12 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MemoriesListCubit, MemoriesListState>(
+    return BlocBuilder<TasksListCubit, TasksListState>(
       builder: (context, state) {
         return switch (state) {
-          MemoriesListLoading() => _buildLoading(context),
-          MemoriesListLoaded(:final memories) => _buildLoaded(context, memories),
-          MemoriesListError(:final message) => _buildError(context, message),
+          TasksListLoading() => _buildLoading(context),
+          TasksListLoaded(tasks:final memories) => _buildLoaded(context, memories),
+          TasksListError(:final message) => _buildError(context, message),
         };
       },
     );

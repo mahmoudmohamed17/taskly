@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../cubits/add_memory_cubit.dart';
+import '../../cubits/add_task_cubit.dart';
 
 class TaskInputAttachmentWidget extends StatelessWidget {
   final TaskAttachmentInput input;
@@ -47,7 +47,7 @@ class TaskInputAttachmentWidget extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: () async {
-                await context.read<AddMemoryCubit>().removeAttachment(input);
+                await context.read<AddTaskCubit>().removeAttachment(input);
               },
               child: CircleAvatar(
                 backgroundColor: Colors.white38,

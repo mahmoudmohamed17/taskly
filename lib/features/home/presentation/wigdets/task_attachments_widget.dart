@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../cubits/add_memory_cubit.dart';
+import '../../cubits/add_task_cubit.dart';
 import 'task_input_attachment_widget.dart';
 
 class TaskAttachmentsWidget extends StatelessWidget {
@@ -16,10 +16,10 @@ class TaskAttachmentsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddMemoryCubit, AddMemoryState>(
-      buildWhen: (_, state) => state is AddMemoryAttachmentsUpdated || state is AddMemoryInitial,
+    return BlocBuilder<AddTaskCubit, AddTaskState>(
+      buildWhen: (_, state) => state is AddTaskAttachmentsUpdated || state is AddTaskInitial,
       builder: (context, state) {
-        final List<TaskAttachmentInput> attachments = state is AddMemoryAttachmentsUpdated ? state.attachments : [];
+        final List<TaskAttachmentInput> attachments = state is AddTaskAttachmentsUpdated ? state.attachments : [];
         if (attachments.isEmpty) return _empty(context);
 
         return _filled(context, attachments);
@@ -41,7 +41,7 @@ class TaskAttachmentsWidget extends StatelessWidget {
               style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
             ),
             GestureDetector(
-              onTap: () => context.read<AddMemoryCubit>().pickAttachments(),
+              onTap: () => context.read<AddTaskCubit>().pickAttachments(),
               child: FaIcon(
                 FontAwesomeIcons.plus,
                 size: 20.sp,
@@ -62,7 +62,7 @@ class TaskAttachmentsWidget extends StatelessWidget {
 
   Widget _empty(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.read<AddMemoryCubit>().pickAttachments(),
+      onTap: () => context.read<AddTaskCubit>().pickAttachments(),
       child: DottedBorder(
         options: RoundedRectDottedBorderOptions(
           radius: Radius.circular(16.r),

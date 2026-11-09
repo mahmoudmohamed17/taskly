@@ -14,8 +14,8 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
-import '../../features/home/cubits/add_memory_cubit.dart' as _i762;
-import '../../features/home/cubits/memories_list_cubit.dart' as _i531;
+import '../../features/home/cubits/add_task_cubit.dart' as _i898;
+import '../../features/home/cubits/tasks_list_cubit.dart' as _i453;
 import '../../features/search/cubits/search_cubit.dart' as _i51;
 import '../../features/task_details/presentation/cubits/edit_memory_cubit.dart'
     as _i112;
@@ -41,6 +41,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final modules = _$Modules();
+    gh.singleton<_i49.AppFlowCubit>(() => _i49.AppFlowCubit());
     gh.singleton<_i525.ThemeCubit>(() => _i525.ThemeCubit());
     await gh.singletonAsync<_i460.SharedPreferences>(
       () => modules.sharedPreferences,
@@ -62,20 +63,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i897.TasksDao>(
       () => modules.memoriesDao(gh<_i982.AppDatabase>()),
     );
-    gh.singleton<_i49.AppFlowCubit>(
-      () => _i49.AppFlowCubit(gh<_i964.SharedPrefsHelper>()),
-    );
     gh.lazySingleton<_i626.TaskRepository>(
       () => _i30.TaskRepositoryImpl(
         gh<_i897.TasksDao>(),
         gh<_i159.AttachmentFileService>(),
       ),
     );
-    gh.factory<_i762.AddMemoryCubit>(
-      () => _i762.AddMemoryCubit(gh<_i626.TaskRepository>()),
+    gh.factory<_i898.AddTaskCubit>(
+      () => _i898.AddTaskCubit(gh<_i626.TaskRepository>()),
     );
-    gh.factory<_i531.MemoriesListCubit>(
-      () => _i531.MemoriesListCubit(gh<_i626.TaskRepository>()),
+    gh.factory<_i453.TasksListCubit>(
+      () => _i453.TasksListCubit(gh<_i626.TaskRepository>()),
     );
     gh.factory<_i51.SearchCubit>(
       () => _i51.SearchCubit(gh<_i626.TaskRepository>()),

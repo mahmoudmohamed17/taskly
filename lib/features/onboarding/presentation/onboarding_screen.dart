@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _onNext() {
     _controller.nextPage(
       duration: AppMotion.slow,
-      curve: AppMotion.standard,
+      curve: AppMotion.pulse,
     );
   }
 

@@ -10,7 +10,7 @@ import '../../../../core/utils/extensions.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/task_category_selection_widget.dart';
-import '../../cubits/add_memory_cubit.dart';
+import '../../cubits/add_task_cubit.dart';
 import 'task_attachments_widget.dart';
 import 'task_creation_form.dart';
 
@@ -43,7 +43,7 @@ class _TaskCreationBottomSheetState extends State<TaskCreationBottomSheet> {
       _isCategorySelected.value = false;
     }
     if (isFormValid && isCategoryValid) {
-      context.read<AddMemoryCubit>().addMemory(
+      context.read<AddTaskCubit>().addMemory(
         title: _title.text,
         description: _description.text,
         category: _selectedCategory!,
@@ -61,12 +61,12 @@ class _TaskCreationBottomSheetState extends State<TaskCreationBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AddMemoryCubit, AddMemoryState>(
+    return BlocListener<AddTaskCubit, AddTaskState>(
       listener: (context, state) {
-        if (state is AddMemorySuccess) {
+        if (state is AddTaskSuccess) {
           context.pop();
           AppToast.success(context.tr(AppStrings.addTaskSaved));
-        } else if (state is AddMemoryError) {
+        } else if (state is AddTaskError) {
           AppToast.error(context.tr(state.message));
         }
       },
