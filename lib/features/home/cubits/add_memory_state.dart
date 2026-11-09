@@ -17,7 +17,7 @@ final class AddMemoryAttachmentsEmpty extends AddMemoryState {
 }
 
 final class AddMemoryAttachmentsUpdated extends AddMemoryState {
-  final List<MemoryAttachmentInput> attachments;
+  final List<TaskAttachmentInput> attachments;
 
   const AddMemoryAttachmentsUpdated(this.attachments);
 }

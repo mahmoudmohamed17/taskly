@@ -4,16 +4,16 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../core/models/memory_attachment_input.dart';
-import '../../../core/repositories/memory_repository.dart';
+import '../../../core/models/task_attachment_input.dart';
+import '../../../core/repositories/task_repository.dart';
 import '../../../core/utils/enums.dart';
 
 part 'add_memory_state.dart';
 
 @injectable
 class AddMemoryCubit extends Cubit<AddMemoryState> {
-  final MemoryRepository _repo;
-  final List<MemoryAttachmentInput> _selectedAttachments = [];
+  final TaskRepository _repo;
+  final List<TaskAttachmentInput> _selectedAttachments = [];
 
   AddMemoryCubit(this._repo) : super(const AddMemoryInitial());
 
@@ -29,7 +29,7 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
       if (_selectedAttachments.any((item) => item.file.path == path)) continue;
       final size = await file.length();
       _selectedAttachments.add(
-        MemoryAttachmentInput(
+        TaskAttachmentInput(
           file: File(path),
           name: file.name,
           type: type,
@@ -40,7 +40,7 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
     emit(AddMemoryAttachmentsUpdated(_selectedAttachments));
   }
 
-  Future<void> removeAttachment(MemoryAttachmentInput input) async {
+  Future<void> removeAttachment(TaskAttachmentInput input) async {
     _selectedAttachments.removeWhere((item) => item == input);
     emit(AddMemoryAttachmentsUpdated(_selectedAttachments));
   }
@@ -49,11 +49,11 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
   Future<void> addMemory({
     required String title,
     required String description,
-    required MemoryCategory category,
-    List<MemoryAttachmentInput>? attachments,
+    required TaskCategory category,
+    List<TaskAttachmentInput>? attachments,
   }) async {
     emit(const AddMemoryLoading());
-    final result = await _repo.addMemory(
+    final result = await _repo.addTask(
       title: title,
       description: description,
       category: category,
@@ -89,7 +89,7 @@ class AddMemoryCubit extends Cubit<AddMemoryState> {
   /// Attaches a file to an already-created memory.
   Future<void> addAttachment({
     required int memoryId,
-    required MemoryAttachmentInput attachment,
+    required TaskAttachmentInput attachment,
     int sizeBytes = 0,
   }) async {
     final result = await _repo.addAttachment(

@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/models/memory_attachment_input.dart';
+import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../cubits/add_memory_cubit.dart';
 
 class MemoryInputAttachmentWidget extends StatelessWidget {
-  final MemoryAttachmentInput input;
+  final TaskAttachmentInput input;
 
   const MemoryInputAttachmentWidget({super.key, required this.input});
 

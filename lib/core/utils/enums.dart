@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme/app_colors.dart';
 import 'app_strings.dart';
 
-enum MemoryCategory {
+enum TaskCategory {
   medical(
     icon: Icons.medical_services_outlined,
     label: AppStrings.categoriesMedical,
@@ -36,7 +36,7 @@ enum MemoryCategory {
     categoryColors: AppCategoryColors.other,
   );
 
-  const MemoryCategory({required this.icon, required this.label, required this.categoryColors});
+  const TaskCategory({required this.icon, required this.label, required this.categoryColors});
 
   /// The icon that visually represents this category.
   final IconData icon;

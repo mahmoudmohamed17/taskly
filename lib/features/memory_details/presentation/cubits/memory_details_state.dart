@@ -9,12 +9,12 @@ final class MemoryDetailsLoading extends MemoryDetailsState {
 }
 
 final class MemoryDetailsLoaded extends MemoryDetailsState {
-  final MemoryModel memory;
+  final TaskModel memory;
 
   const MemoryDetailsLoaded({required this.memory});
 }
 
-/// Emitted when [MemoryRepository.deleteMemory] succeeds, or when the watched
+/// Emitted when [TaskRepository.deleteTask] succeeds, or when the watched
 /// memory disappears from the DB (e.g. deleted from another screen).
 /// The UI should respond by navigating back.
 final class MemoryDetailsDeleted extends MemoryDetailsState {

@@ -5,23 +5,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/models/attachment_model.dart';
-import '../../../../core/models/memory_attachment_input.dart';
-import '../../../../core/repositories/memory_repository.dart';
+import '../../../../core/models/task_attachment_input.dart';
+import '../../../../core/repositories/task_repository.dart';
 import '../../../../core/utils/enums.dart';
 
 part 'edit_memory_state.dart';
 
 @injectable
 class EditMemoryCubit extends Cubit<EditMemoryState> {
-  final MemoryRepository _repo;
+  final TaskRepository _repo;
   List<AttachmentModel> _keptAttachments = [];
-  final List<MemoryAttachmentInput> _selectedAttachments = [];
+  final List<TaskAttachmentInput> _selectedAttachments = [];
   Set<int> _initialAttachmentIds = {};
 
   EditMemoryCubit(this._repo) : super(const EditMemoryInitial());
 
   List<AttachmentModel> get keptAttachments => List.unmodifiable(_keptAttachments);
-  List<MemoryAttachmentInput> get selectedAttachments => List.unmodifiable(_selectedAttachments);
+  List<TaskAttachmentInput> get selectedAttachments => List.unmodifiable(_selectedAttachments);
 
   bool get hasAttachmentChanges =>
       !_keptAttachments.map((item) => item.attachmentId).toSet().containsAll(_initialAttachmentIds) ||
@@ -39,10 +39,10 @@ class EditMemoryCubit extends Cubit<EditMemoryState> {
     required int id,
     required String title,
     required String description,
-    required MemoryCategory category,
+    required TaskCategory category,
   }) async {
     emit(const EditMemoryLoading());
-    final result = await _repo.updateMemoryWithAttachments(
+    final result = await _repo.updateTaskWithAttachments(
       id: id,
       title: title,
       description: description,
@@ -72,7 +72,7 @@ class EditMemoryCubit extends Cubit<EditMemoryState> {
       if (path == null || _selectedAttachments.any((item) => item.file.path == path)) continue;
       final size = await file.length();
       _selectedAttachments.add(
-        MemoryAttachmentInput(
+        TaskAttachmentInput(
           file: File(path),
           name: file.name,
           type: AttachmentType.fromExtension(file.extension),
@@ -89,7 +89,7 @@ class EditMemoryCubit extends Cubit<EditMemoryState> {
     _emitAttachmentsUpdated();
   }
 
-  void removeSelectedAttachment(MemoryAttachmentInput input) {
+  void removeSelectedAttachment(TaskAttachmentInput input) {
     if (state is EditMemoryLoading) return;
     _selectedAttachments.remove(input);
     _emitAttachmentsUpdated();

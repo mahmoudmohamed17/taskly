@@ -16,9 +16,9 @@ final class SearchLoading extends SearchState {
 
 /// At least one result was found for the current [query] / [activeCategory].
 final class SearchLoaded extends SearchState {
-  final List<MemoryModel> results;
+  final List<TaskModel> results;
   final String query;
-  final MemoryCategory? activeCategory;
+  final TaskCategory? activeCategory;
 
   const SearchLoaded({
     required this.results,
@@ -30,7 +30,7 @@ final class SearchLoaded extends SearchState {
 /// A query was executed but returned zero results.
 final class SearchEmpty extends SearchState {
   final String query;
-  final MemoryCategory? activeCategory;
+  final TaskCategory? activeCategory;
 
   const SearchEmpty({required this.query, this.activeCategory});
 }

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import '../utils/enums.dart';
 
-class MemoryAttachmentInput {
-  const MemoryAttachmentInput({
+class TaskAttachmentInput {
+  const TaskAttachmentInput({
     required this.file,
     required this.name,
     required this.type,

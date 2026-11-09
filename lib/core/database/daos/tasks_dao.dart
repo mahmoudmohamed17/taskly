@@ -3,109 +3,109 @@ import 'package:drift/drift.dart';
 import '../../utils/enums.dart';
 import '../app_database.dart';
 import '../tables/attachments.dart';
-import '../tables/memories.dart';
+import '../tables/tasks.dart';
 
-part 'memories_dao.g.dart';
+part 'tasks_dao.g.dart';
 
 /// A memory row together with its children.
-class MemoryWithDetails {
-  final Memory memory;
+class TaskWithDetails {
+  final Task task;
   final List<Attachment> attachments;
 
-  new({required this.memory, required this.attachments});
+  new({required this.task, required this.attachments});
 }
 
 class _Acc {
-  _Acc(this.memory);
+  _Acc(this.task);
 
-  final Memory memory;
+  final Task task;
   final Map<int, Attachment> attachments = {};
 }
 
-@DriftAccessor(tables: [Memories, Attachments])
-class MemoriesDao extends DatabaseAccessor<AppDatabase> with _$MemoriesDaoMixin {
+@DriftAccessor(tables: [Tasks, Attachments])
+class TasksDao extends DatabaseAccessor<AppDatabase> with _$TasksDaoMixin {
   new(super.db);
 
   // ───────────────────────── Reads ─────────────────────────
-  Stream<List<MemoryWithDetails>> watchAll({
-    MemoryCategory? category,
+  Stream<List<TaskWithDetails>> watchAll({
+    TaskCategory? category,
     String normalizedQuery = '',
   }) {
     final filters = <Expression<bool>>[
-      if (category != null) memories.category.equalsValue(category),
-      if (normalizedQuery.isNotEmpty) memories.normalizedText.contains(normalizedQuery),
+      if (category != null) tasks.category.equalsValue(category),
+      if (normalizedQuery.isNotEmpty) tasks.normalizedText.contains(normalizedQuery),
     ];
     return _watchJoined(filters);
   }
 
-  Stream<MemoryWithDetails?> watchOne(int id) {
-    return _watchJoined([memories.id.equals(id)]).map((list) => list.isEmpty ? null : list.first);
+  Stream<TaskWithDetails?> watchOne(int id) {
+    return _watchJoined([tasks.id.equals(id)]).map((list) => list.isEmpty ? null : list.first);
   }
 
-  Stream<List<MemoryWithDetails>> _watchJoined(List<Expression<bool>> filters) {
-    final query = select(memories).join([
-      leftOuterJoin(attachments, attachments.memoryId.equalsExp(memories.id)),
+  Stream<List<TaskWithDetails>> _watchJoined(List<Expression<bool>> filters) {
+    final query = select(tasks).join([
+      leftOuterJoin(attachments, attachments.taskId.equalsExp(tasks.id)),
     ]);
     if (filters.isNotEmpty) {
       query.where(filters.reduce((a, b) => a & b));
     }
-    query.orderBy([OrderingTerm.desc(memories.updatedAt)]);
+    query.orderBy([OrderingTerm.desc(tasks.updatedAt)]);
     return query.watch().map(_group);
   }
 
-  List<MemoryWithDetails> _group(List<TypedResult> rows) {
+  List<TaskWithDetails> _group(List<TypedResult> rows) {
     final map = <int, _Acc>{}; // insertion order = query order
 
     for (final row in rows) {
-      final memory = row.readTable(memories);
-      final acc = map.putIfAbsent(memory.id, () => _Acc(memory));
+      final task = row.readTable(tasks);
+      final acc = map.putIfAbsent(task.id, () => _Acc(task));
       final attachment = row.readTableOrNull(attachments);
       if (attachment != null) acc.attachments[attachment.id] = attachment;
     }
     return [
-      for (final a in map.values) MemoryWithDetails(memory: a.memory, attachments: a.attachments.values.toList()),
+      for (final a in map.values) TaskWithDetails(task: a.task, attachments: a.attachments.values.toList()),
     ];
   }
 
   // ───────────────────────── Memories ─────────────────────────
-  Future<int> insertMemory(MemoriesCompanion entry) => into(memories).insert(entry);
+  Future<int> insertTask(TasksCompanion entry) => into(tasks).insert(entry);
 
-  Future<void> updateMemory(int id, MemoriesCompanion change) =>
-      (update(memories)..where((m) => m.id.equals(id))).write(change);
+  Future<void> updateTask(int id, TasksCompanion change) =>
+      (update(tasks)..where((t) => t.id.equals(id))).write(change);
 
   /// Applies a memory edit and its attachment changes in one database transaction.
   /// Returns paths for removed attachments so the repository can delete the files
   /// after the transaction commits.
-  Future<List<String>> updateMemoryWithAttachments({
-    required int memoryId,
-    required MemoriesCompanion memory,
+  Future<List<String>> updateTaskWithAttachments({
+    required int taskId,
+    required TasksCompanion task,
     required List<AttachmentsCompanion> additions,
     required List<int> removals,
   }) => transaction(() async {
     final removedPaths = <String>[];
     for (final attachmentId in removals) {
       final row = await (select(attachments)..where((a) => a.id.equals(attachmentId))).getSingleOrNull();
-      if (row == null || row.memoryId != memoryId) continue;
+      if (row == null || row.taskId != taskId) continue;
       removedPaths.add(row.relativePath);
       await (delete(attachments)..where((a) => a.id.equals(attachmentId))).go();
     }
 
-    await updateMemory(memoryId, memory);
+    await updateTask(taskId, task);
     for (final entry in additions) {
       await into(attachments).insert(entry);
     }
     return removedPaths;
   });
 
-  Future<List<String>> deleteMemorry(int id) {
+  Future<List<String>> deleteTask(int id) {
     return transaction(() async {
       final paths =
           (select(attachments)..where(
-                (a) => a.memoryId.equals(id),
+                (a) => a.taskId.equals(id),
               ))
               .map((a) => a.relativePath)
               .get();
-      await (delete(memories)..where((m) => m.id.equals(id))).go();
+      await (delete(tasks)..where((t) => t.id.equals(id))).go();
       return paths;
     });
   }
@@ -114,7 +114,7 @@ class MemoriesDao extends DatabaseAccessor<AppDatabase> with _$MemoriesDaoMixin 
   Future<int> insertAttachment(AttachmentsCompanion entry) {
     return transaction(() async {
       final id = into(attachments).insert(entry);
-      await _touch(entry.memoryId.value);
+      await _touch(entry.taskId.value);
       return id;
     });
   }
@@ -123,14 +123,14 @@ class MemoriesDao extends DatabaseAccessor<AppDatabase> with _$MemoriesDaoMixin 
     return transaction(() async {
       if (entries.isEmpty) return <int>[];
 
-      final memoryIds = <int>{};
+      final taskIds = <int>{};
       final ids = <int>[];
       for (final entry in entries) {
         ids.add(await into(attachments).insert(entry));
-        memoryIds.add(entry.memoryId.value);
+        taskIds.add(entry.taskId.value);
       }
-      for (final memoryId in memoryIds) {
-        await _touch(memoryId);
+      for (final taskId in taskIds) {
+        await _touch(taskId);
       }
       return ids;
     });
@@ -143,15 +143,15 @@ class MemoriesDao extends DatabaseAccessor<AppDatabase> with _$MemoriesDaoMixin 
       if (row == null) return null;
 
       await (delete(attachments)..where((a) => a.id.equals(id))).go();
-      await _touch(row.memoryId);
+      await _touch(row.taskId);
       return row.relativePath;
     });
   }
 
   // ───────────────────────── Helpers ─────────────────────────
 
-  Future<void> _touch(int memoryId) => updateMemory(
-    memoryId,
-    MemoriesCompanion(updatedAt: Value(DateTime.now())),
+  Future<void> _touch(int taskId) => updateTask(
+    taskId,
+    TasksCompanion(updatedAt: Value(DateTime.now())),
   );
 }

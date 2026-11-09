@@ -18,7 +18,7 @@ final class EditMemorySuccess extends EditMemoryState {
 
 final class EditAttachmentsUpdated extends EditMemoryState {
   final List<AttachmentModel> keptAttachments;
-  final List<MemoryAttachmentInput> selectedAttachments;
+  final List<TaskAttachmentInput> selectedAttachments;
 
   const EditAttachmentsUpdated({
     required this.keptAttachments,

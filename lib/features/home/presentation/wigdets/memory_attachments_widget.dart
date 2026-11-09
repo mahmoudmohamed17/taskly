@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/models/memory_attachment_input.dart';
+import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../cubits/add_memory_cubit.dart';
@@ -19,7 +19,7 @@ class MemoryAttachmentsWidget extends StatelessWidget {
     return BlocBuilder<AddMemoryCubit, AddMemoryState>(
       buildWhen: (_, state) => state is AddMemoryAttachmentsUpdated || state is AddMemoryInitial,
       builder: (context, state) {
-        final List<MemoryAttachmentInput> attachments = state is AddMemoryAttachmentsUpdated ? state.attachments : [];
+        final List<TaskAttachmentInput> attachments = state is AddMemoryAttachmentsUpdated ? state.attachments : [];
         if (attachments.isEmpty) return _empty(context);
 
         return _filled(context, attachments);
@@ -27,7 +27,7 @@ class MemoryAttachmentsWidget extends StatelessWidget {
     );
   }
 
-  Widget _filled(BuildContext context, List<MemoryAttachmentInput> attachments) {
+  Widget _filled(BuildContext context, List<TaskAttachmentInput> attachments) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,

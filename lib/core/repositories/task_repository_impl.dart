@@ -6,18 +6,18 @@ import 'package:injectable/injectable.dart';
 
 import '../../config/error_handler/error_handler.dart';
 import '../database/app_database.dart';
-import '../database/daos/memories_dao.dart';
+import '../database/daos/tasks_dao.dart';
 import '../models/attachment_model.dart';
-import '../models/memory_attachment_input.dart';
-import '../models/memory_model.dart';
+import '../models/task_attachment_input.dart';
+import '../models/task_model.dart';
 import '../services/attachment_file_service.dart';
 import '../utils/arabic_normalizer.dart';
 import '../utils/enums.dart';
-import 'memory_repository.dart';
+import 'task_repository.dart';
 
-@LazySingleton(as: MemoryRepository)
-class MemoryRepositoryImpl implements MemoryRepository {
-  final MemoriesDao _dao;
+@LazySingleton(as: TaskRepository)
+class TaskRepositoryImpl implements TaskRepository {
+  final TasksDao _dao;
   final AttachmentFileService _fileService;
 
   new(this._dao, this._fileService);
@@ -25,11 +25,11 @@ class MemoryRepositoryImpl implements MemoryRepository {
   @override
   Future<Result<int>> addAttachment({
     required int memoryId,
-    required MemoryAttachmentInput attachment,
+    required TaskAttachmentInput attachment,
   }) => _attempt(
     () => _dao.insertAttachment(
       AttachmentsCompanion.insert(
-        memoryId: memoryId,
+        taskId: memoryId,
         type: attachment.type,
         fileName: attachment.name,
         relativePath: attachment.file.path,
@@ -42,7 +42,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
   @override
   Future<Result<List<int>>> addAttachments({
     required int memoryId,
-    required List<MemoryAttachmentInput> attachments,
+    required List<TaskAttachmentInput> attachments,
   }) => _attempt(() async {
     if (attachments.isEmpty) return <int>[];
 
@@ -54,7 +54,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
         savedPaths.add(relativePath);
         entries.add(
           AttachmentsCompanion.insert(
-            memoryId: memoryId,
+            taskId: memoryId,
             type: attachment.type,
             relativePath: relativePath,
             fileName: attachment.name,
@@ -70,13 +70,13 @@ class MemoryRepositoryImpl implements MemoryRepository {
   }, (error) => AppError.memoryAttachmentFailed(cause: error));
 
   @override
-  Future<Result<int>> addMemory({
+  Future<Result<int>> addTask({
     required String title,
     String description = '',
-    required MemoryCategory category,
+    required TaskCategory category,
   }) => _attempt(
-    () => _dao.insertMemory(
-      MemoriesCompanion.insert(
+    () => _dao.insertTask(
+      TasksCompanion.insert(
         title: title.trim(),
         description: Value(description.trim()),
         normalizedText: Value(_searchText(title, description)),
@@ -87,8 +87,8 @@ class MemoryRepositoryImpl implements MemoryRepository {
   );
 
   @override
-  Future<Result<Unit>> deleteMemory(int id) => _attempt(() async {
-    final paths = await _dao.deleteMemorry(id);
+  Future<Result<Unit>> deleteTask(int id) => _attempt(() async {
+    final paths = await _dao.deleteTask(id);
     await _fileService.deleteAll(paths);
     return unit;
   }, (error) => AppError.memoryDeleteFailed(cause: error));
@@ -101,16 +101,16 @@ class MemoryRepositoryImpl implements MemoryRepository {
   }, (error) => AppError.memoryAttachmentFailed(cause: error));
 
   @override
-  Future<Result<Unit>> updateMemory({
+  Future<Result<Unit>> updateTask({
     required int id,
     required String title,
     required String description,
-    required MemoryCategory category,
+    required TaskCategory category,
   }) => _attempt(
     () async {
-      await _dao.updateMemory(
+      await _dao.updateTask(
         id,
-        MemoriesCompanion(
+        TasksCompanion(
           title: Value(title.trim()),
           description: Value(description.trim()),
           normalizedText: Value(_searchText(title, description)),
@@ -124,12 +124,12 @@ class MemoryRepositoryImpl implements MemoryRepository {
   );
 
   @override
-  Future<Result<Unit>> updateMemoryWithAttachments({
+  Future<Result<Unit>> updateTaskWithAttachments({
     required int id,
     required String title,
     required String description,
-    required MemoryCategory category,
-    required List<MemoryAttachmentInput> additions,
+    required TaskCategory category,
+    required List<TaskAttachmentInput> additions,
     required List<int> removals,
   }) => _attempt(() async {
     final savedPaths = <String>[];
@@ -141,7 +141,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
         savedPaths.add(relativePath);
         entries.add(
           AttachmentsCompanion.insert(
-            memoryId: id,
+            taskId: id,
             type: attachment.type,
             relativePath: relativePath,
             fileName: attachment.name,
@@ -150,9 +150,9 @@ class MemoryRepositoryImpl implements MemoryRepository {
         );
       }
 
-      removedPaths = await _dao.updateMemoryWithAttachments(
-        memoryId: id,
-        memory: MemoriesCompanion(
+      removedPaths = await _dao.updateTaskWithAttachments(
+        taskId: id,
+        task: TasksCompanion(
           title: Value(title.trim()),
           description: Value(description.trim()),
           normalizedText: Value(_searchText(title, description)),
@@ -171,7 +171,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
   }, (error) => AppError.memoryUpdateFailed(cause: error));
 
   @override
-  Stream<Result<List<MemoryModel>>> watchMemories({MemoryCategory? category, String query = ''}) {
+  Stream<Result<List<TaskModel>>> watchTasks({TaskCategory? category, String query = ''}) {
     return _watch(
       _dao
           .watchAll(
@@ -184,7 +184,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
   }
 
   @override
-  Stream<Result<MemoryModel?>> watchMemory(int id) => _watch(
+  Stream<Result<TaskModel?>> watchTask(int id) => _watch(
     _dao.watchOne(id).map((d) => d == null ? null : _toModel(d)),
     (error) => AppError.storageReadFailed(cause: error),
   );
@@ -210,11 +210,11 @@ class MemoryRepositoryImpl implements MemoryRepository {
   // Helpers
   String _searchText(String title, String body) => ArabicNormalizer.normalize('$title $body');
 
-  MemoryModel _toModel(MemoryWithDetails d) {
-    final model = d.memory;
+  TaskModel _toModel(TaskWithDetails d) {
+    final model = d.task;
     final attachments = d.attachments.map((item) => _toAttachment(item)).toList();
 
-    return MemoryModel(
+    return TaskModel(
       id: model.id,
       title: model.title,
       description: model.description,
@@ -228,7 +228,7 @@ class MemoryRepositoryImpl implements MemoryRepository {
   AttachmentModel _toAttachment(Attachment a) {
     return AttachmentModel(
       attachmentId: a.id,
-      memoryId: a.memoryId,
+      memoryId: a.taskId,
       fileName: a.fileName,
       type: a.type,
       sizeBytes: a.sizeBytes,

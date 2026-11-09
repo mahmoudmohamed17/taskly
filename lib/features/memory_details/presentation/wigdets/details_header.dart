@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../../../core/models/memory_model.dart';
+import '../../../../core/models/task_model.dart';
 
 class DetailsHeader extends StatelessWidget {
   const new({
@@ -12,7 +12,7 @@ class DetailsHeader extends StatelessWidget {
     required this.model,
   });
 
-  final MemoryModel model;
+  final TaskModel model;
 
   @override
   Widget build(BuildContext context) {

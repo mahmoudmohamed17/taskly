@@ -9,7 +9,7 @@ import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
-import '../../../../core/widgets/memory_category_selection_widget.dart';
+import '../../../../core/widgets/task_category_selection_widget.dart';
 import '../../cubits/add_memory_cubit.dart';
 import 'memory_attachments_widget.dart';
 import 'memory_creation_form.dart';
@@ -25,7 +25,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
   late final TextEditingController _title;
   late final TextEditingController _description;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  MemoryCategory? _selectedCategory;
+  TaskCategory? _selectedCategory;
   final ValueNotifier<bool?> _isCategorySelected = ValueNotifier(null);
 
   @override
@@ -93,7 +93,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 4,
                 children: [
-                  MemoryCategorySelectionWidget(
+                  TaskCategorySelectionWidget(
                     onSelected: (category) {
                       _isCategorySelected.value = true;
                       _selectedCategory = category;

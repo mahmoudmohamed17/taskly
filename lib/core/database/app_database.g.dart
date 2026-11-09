@@ -3,11 +3,11 @@
 part of 'app_database.dart';
 
 // ignore_for_file: type=lint
-class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
+class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $MemoriesTable(this.attachedDatabase, [this._alias]);
+  $TasksTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -47,14 +47,14 @@ class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
     defaultValue: const Constant(''),
   );
   @override
-  late final GeneratedColumnWithTypeConverter<MemoryCategory, String> category =
+  late final GeneratedColumnWithTypeConverter<TaskCategory, String> category =
       GeneratedColumn<String>(
         'category',
         aliasedName,
         false,
         type: DriftSqlType.string,
         requiredDuringInsert: true,
-      ).withConverter<MemoryCategory>($MemoriesTable.$convertercategory);
+      ).withConverter<TaskCategory>($TasksTable.$convertercategory);
   static const VerificationMeta _normalizedTextMeta = const VerificationMeta(
     'normalizedText',
   );
@@ -105,10 +105,10 @@ class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'memories';
+  static const String $name = 'tasks';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Memory> instance, {
+    Insertable<Task> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -160,9 +160,9 @@ class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Memory map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Task map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Memory(
+    return Task(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -175,7 +175,7 @@ class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
         DriftSqlType.string,
         data['${effectivePrefix}description'],
       )!,
-      category: $MemoriesTable.$convertercategory.fromSql(
+      category: $TasksTable.$convertercategory.fromSql(
         attachedDatabase.typeMapping.read(
           DriftSqlType.string,
           data['${effectivePrefix}category'],
@@ -197,25 +197,25 @@ class $MemoriesTable extends Memories with TableInfo<$MemoriesTable, Memory> {
   }
 
   @override
-  $MemoriesTable createAlias(String alias) {
-    return $MemoriesTable(attachedDatabase, alias);
+  $TasksTable createAlias(String alias) {
+    return $TasksTable(attachedDatabase, alias);
   }
 
-  static JsonTypeConverter2<MemoryCategory, String, String> $convertercategory =
-      const EnumNameConverter<MemoryCategory>(MemoryCategory.values);
+  static JsonTypeConverter2<TaskCategory, String, String> $convertercategory =
+      const EnumNameConverter<TaskCategory>(TaskCategory.values);
 }
 
-class Memory extends DataClass implements Insertable<Memory> {
+class Task extends DataClass implements Insertable<Task> {
   final int id;
   final String title;
   final String description;
-  final MemoryCategory category;
+  final TaskCategory category;
 
   /// Title + Description after ArabicNormalizer. Used only for search.
   final String normalizedText;
   final DateTime createdAt;
   final DateTime updatedAt;
-  const Memory({
+  const Task({
     required this.id,
     required this.title,
     required this.description,
@@ -232,7 +232,7 @@ class Memory extends DataClass implements Insertable<Memory> {
     map['description'] = Variable<String>(description);
     {
       map['category'] = Variable<String>(
-        $MemoriesTable.$convertercategory.toSql(category),
+        $TasksTable.$convertercategory.toSql(category),
       );
     }
     map['normalized_text'] = Variable<String>(normalizedText);
@@ -241,8 +241,8 @@ class Memory extends DataClass implements Insertable<Memory> {
     return map;
   }
 
-  MemoriesCompanion toCompanion(bool nullToAbsent) {
-    return MemoriesCompanion(
+  TasksCompanion toCompanion(bool nullToAbsent) {
+    return TasksCompanion(
       id: Value(id),
       title: Value(title),
       description: Value(description),
@@ -253,16 +253,16 @@ class Memory extends DataClass implements Insertable<Memory> {
     );
   }
 
-  factory Memory.fromJson(
+  factory Task.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Memory(
+    return Task(
       id: serializer.fromJson<int>(json['id']),
       title: serializer.fromJson<String>(json['title']),
       description: serializer.fromJson<String>(json['description']),
-      category: $MemoriesTable.$convertercategory.fromJson(
+      category: $TasksTable.$convertercategory.fromJson(
         serializer.fromJson<String>(json['category']),
       ),
       normalizedText: serializer.fromJson<String>(json['normalizedText']),
@@ -278,7 +278,7 @@ class Memory extends DataClass implements Insertable<Memory> {
       'title': serializer.toJson<String>(title),
       'description': serializer.toJson<String>(description),
       'category': serializer.toJson<String>(
-        $MemoriesTable.$convertercategory.toJson(category),
+        $TasksTable.$convertercategory.toJson(category),
       ),
       'normalizedText': serializer.toJson<String>(normalizedText),
       'createdAt': serializer.toJson<DateTime>(createdAt),
@@ -286,15 +286,15 @@ class Memory extends DataClass implements Insertable<Memory> {
     };
   }
 
-  Memory copyWith({
+  Task copyWith({
     int? id,
     String? title,
     String? description,
-    MemoryCategory? category,
+    TaskCategory? category,
     String? normalizedText,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) => Memory(
+  }) => Task(
     id: id ?? this.id,
     title: title ?? this.title,
     description: description ?? this.description,
@@ -303,8 +303,8 @@ class Memory extends DataClass implements Insertable<Memory> {
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );
-  Memory copyWithCompanion(MemoriesCompanion data) {
-    return Memory(
+  Task copyWithCompanion(TasksCompanion data) {
+    return Task(
       id: data.id.present ? data.id.value : this.id,
       title: data.title.present ? data.title.value : this.title,
       description: data.description.present
@@ -321,7 +321,7 @@ class Memory extends DataClass implements Insertable<Memory> {
 
   @override
   String toString() {
-    return (StringBuffer('Memory(')
+    return (StringBuffer('Task(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('description: $description, ')
@@ -346,7 +346,7 @@ class Memory extends DataClass implements Insertable<Memory> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Memory &&
+      (other is Task &&
           other.id == this.id &&
           other.title == this.title &&
           other.description == this.description &&
@@ -356,15 +356,15 @@ class Memory extends DataClass implements Insertable<Memory> {
           other.updatedAt == this.updatedAt);
 }
 
-class MemoriesCompanion extends UpdateCompanion<Memory> {
+class TasksCompanion extends UpdateCompanion<Task> {
   final Value<int> id;
   final Value<String> title;
   final Value<String> description;
-  final Value<MemoryCategory> category;
+  final Value<TaskCategory> category;
   final Value<String> normalizedText;
   final Value<DateTime> createdAt;
   final Value<DateTime> updatedAt;
-  const MemoriesCompanion({
+  const TasksCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.description = const Value.absent(),
@@ -373,17 +373,17 @@ class MemoriesCompanion extends UpdateCompanion<Memory> {
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
   });
-  MemoriesCompanion.insert({
+  TasksCompanion.insert({
     this.id = const Value.absent(),
     required String title,
     this.description = const Value.absent(),
-    required MemoryCategory category,
+    required TaskCategory category,
     this.normalizedText = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
   }) : title = Value(title),
        category = Value(category);
-  static Insertable<Memory> custom({
+  static Insertable<Task> custom({
     Expression<int>? id,
     Expression<String>? title,
     Expression<String>? description,
@@ -403,16 +403,16 @@ class MemoriesCompanion extends UpdateCompanion<Memory> {
     });
   }
 
-  MemoriesCompanion copyWith({
+  TasksCompanion copyWith({
     Value<int>? id,
     Value<String>? title,
     Value<String>? description,
-    Value<MemoryCategory>? category,
+    Value<TaskCategory>? category,
     Value<String>? normalizedText,
     Value<DateTime>? createdAt,
     Value<DateTime>? updatedAt,
   }) {
-    return MemoriesCompanion(
+    return TasksCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -437,7 +437,7 @@ class MemoriesCompanion extends UpdateCompanion<Memory> {
     }
     if (category.present) {
       map['category'] = Variable<String>(
-        $MemoriesTable.$convertercategory.toSql(category.value),
+        $TasksTable.$convertercategory.toSql(category.value),
       );
     }
     if (normalizedText.present) {
@@ -454,7 +454,7 @@ class MemoriesCompanion extends UpdateCompanion<Memory> {
 
   @override
   String toString() {
-    return (StringBuffer('MemoriesCompanion(')
+    return (StringBuffer('TasksCompanion(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('description: $description, ')
@@ -486,18 +486,16 @@ class $AttachmentsTable extends Attachments
       'PRIMARY KEY AUTOINCREMENT',
     ),
   );
-  static const VerificationMeta _memoryIdMeta = const VerificationMeta(
-    'memoryId',
-  );
+  static const VerificationMeta _taskIdMeta = const VerificationMeta('taskId');
   @override
-  late final GeneratedColumn<int> memoryId = GeneratedColumn<int>(
-    'memory_id',
+  late final GeneratedColumn<int> taskId = GeneratedColumn<int>(
+    'task_id',
     aliasedName,
     false,
     type: DriftSqlType.int,
     requiredDuringInsert: true,
     defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'REFERENCES memories (id) ON DELETE CASCADE',
+      'REFERENCES tasks (id) ON DELETE CASCADE',
     ),
   );
   @override
@@ -558,7 +556,7 @@ class $AttachmentsTable extends Attachments
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    memoryId,
+    taskId,
     type,
     fileName,
     sizeBytes,
@@ -580,13 +578,13 @@ class $AttachmentsTable extends Attachments
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    if (data.containsKey('memory_id')) {
+    if (data.containsKey('task_id')) {
       context.handle(
-        _memoryIdMeta,
-        memoryId.isAcceptableOrUnknown(data['memory_id']!, _memoryIdMeta),
+        _taskIdMeta,
+        taskId.isAcceptableOrUnknown(data['task_id']!, _taskIdMeta),
       );
     } else if (isInserting) {
-      context.missing(_memoryIdMeta);
+      context.missing(_taskIdMeta);
     }
     if (data.containsKey('file_name')) {
       context.handle(
@@ -632,9 +630,9 @@ class $AttachmentsTable extends Attachments
         DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      memoryId: attachedDatabase.typeMapping.read(
+      taskId: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
-        data['${effectivePrefix}memory_id'],
+        data['${effectivePrefix}task_id'],
       )!,
       type: $AttachmentsTable.$convertertype.fromSql(
         attachedDatabase.typeMapping.read(
@@ -672,7 +670,7 @@ class $AttachmentsTable extends Attachments
 
 class Attachment extends DataClass implements Insertable<Attachment> {
   final int id;
-  final int memoryId;
+  final int taskId;
   final AttachmentType type;
   final String fileName;
   final int sizeBytes;
@@ -680,7 +678,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   final DateTime createdAt;
   const Attachment({
     required this.id,
-    required this.memoryId,
+    required this.taskId,
     required this.type,
     required this.fileName,
     required this.sizeBytes,
@@ -691,7 +689,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
-    map['memory_id'] = Variable<int>(memoryId);
+    map['task_id'] = Variable<int>(taskId);
     {
       map['type'] = Variable<String>(
         $AttachmentsTable.$convertertype.toSql(type),
@@ -707,7 +705,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   AttachmentsCompanion toCompanion(bool nullToAbsent) {
     return AttachmentsCompanion(
       id: Value(id),
-      memoryId: Value(memoryId),
+      taskId: Value(taskId),
       type: Value(type),
       fileName: Value(fileName),
       sizeBytes: Value(sizeBytes),
@@ -723,7 +721,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Attachment(
       id: serializer.fromJson<int>(json['id']),
-      memoryId: serializer.fromJson<int>(json['memoryId']),
+      taskId: serializer.fromJson<int>(json['taskId']),
       type: $AttachmentsTable.$convertertype.fromJson(
         serializer.fromJson<String>(json['type']),
       ),
@@ -738,7 +736,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
-      'memoryId': serializer.toJson<int>(memoryId),
+      'taskId': serializer.toJson<int>(taskId),
       'type': serializer.toJson<String>(
         $AttachmentsTable.$convertertype.toJson(type),
       ),
@@ -751,7 +749,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
 
   Attachment copyWith({
     int? id,
-    int? memoryId,
+    int? taskId,
     AttachmentType? type,
     String? fileName,
     int? sizeBytes,
@@ -759,7 +757,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
     DateTime? createdAt,
   }) => Attachment(
     id: id ?? this.id,
-    memoryId: memoryId ?? this.memoryId,
+    taskId: taskId ?? this.taskId,
     type: type ?? this.type,
     fileName: fileName ?? this.fileName,
     sizeBytes: sizeBytes ?? this.sizeBytes,
@@ -769,7 +767,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   Attachment copyWithCompanion(AttachmentsCompanion data) {
     return Attachment(
       id: data.id.present ? data.id.value : this.id,
-      memoryId: data.memoryId.present ? data.memoryId.value : this.memoryId,
+      taskId: data.taskId.present ? data.taskId.value : this.taskId,
       type: data.type.present ? data.type.value : this.type,
       fileName: data.fileName.present ? data.fileName.value : this.fileName,
       sizeBytes: data.sizeBytes.present ? data.sizeBytes.value : this.sizeBytes,
@@ -784,7 +782,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   String toString() {
     return (StringBuffer('Attachment(')
           ..write('id: $id, ')
-          ..write('memoryId: $memoryId, ')
+          ..write('taskId: $taskId, ')
           ..write('type: $type, ')
           ..write('fileName: $fileName, ')
           ..write('sizeBytes: $sizeBytes, ')
@@ -797,7 +795,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
   @override
   int get hashCode => Object.hash(
     id,
-    memoryId,
+    taskId,
     type,
     fileName,
     sizeBytes,
@@ -809,7 +807,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
       identical(this, other) ||
       (other is Attachment &&
           other.id == this.id &&
-          other.memoryId == this.memoryId &&
+          other.taskId == this.taskId &&
           other.type == this.type &&
           other.fileName == this.fileName &&
           other.sizeBytes == this.sizeBytes &&
@@ -819,7 +817,7 @@ class Attachment extends DataClass implements Insertable<Attachment> {
 
 class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   final Value<int> id;
-  final Value<int> memoryId;
+  final Value<int> taskId;
   final Value<AttachmentType> type;
   final Value<String> fileName;
   final Value<int> sizeBytes;
@@ -827,7 +825,7 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   final Value<DateTime> createdAt;
   const AttachmentsCompanion({
     this.id = const Value.absent(),
-    this.memoryId = const Value.absent(),
+    this.taskId = const Value.absent(),
     this.type = const Value.absent(),
     this.fileName = const Value.absent(),
     this.sizeBytes = const Value.absent(),
@@ -836,19 +834,19 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   });
   AttachmentsCompanion.insert({
     this.id = const Value.absent(),
-    required int memoryId,
+    required int taskId,
     required AttachmentType type,
     required String fileName,
     this.sizeBytes = const Value.absent(),
     required String relativePath,
     this.createdAt = const Value.absent(),
-  }) : memoryId = Value(memoryId),
+  }) : taskId = Value(taskId),
        type = Value(type),
        fileName = Value(fileName),
        relativePath = Value(relativePath);
   static Insertable<Attachment> custom({
     Expression<int>? id,
-    Expression<int>? memoryId,
+    Expression<int>? taskId,
     Expression<String>? type,
     Expression<String>? fileName,
     Expression<int>? sizeBytes,
@@ -857,7 +855,7 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (memoryId != null) 'memory_id': memoryId,
+      if (taskId != null) 'task_id': taskId,
       if (type != null) 'type': type,
       if (fileName != null) 'file_name': fileName,
       if (sizeBytes != null) 'size_bytes': sizeBytes,
@@ -868,7 +866,7 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
 
   AttachmentsCompanion copyWith({
     Value<int>? id,
-    Value<int>? memoryId,
+    Value<int>? taskId,
     Value<AttachmentType>? type,
     Value<String>? fileName,
     Value<int>? sizeBytes,
@@ -877,7 +875,7 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   }) {
     return AttachmentsCompanion(
       id: id ?? this.id,
-      memoryId: memoryId ?? this.memoryId,
+      taskId: taskId ?? this.taskId,
       type: type ?? this.type,
       fileName: fileName ?? this.fileName,
       sizeBytes: sizeBytes ?? this.sizeBytes,
@@ -892,8 +890,8 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
-    if (memoryId.present) {
-      map['memory_id'] = Variable<int>(memoryId.value);
+    if (taskId.present) {
+      map['task_id'] = Variable<int>(taskId.value);
     }
     if (type.present) {
       map['type'] = Variable<String>(
@@ -919,7 +917,7 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
   String toString() {
     return (StringBuffer('AttachmentsCompanion(')
           ..write('id: $id, ')
-          ..write('memoryId: $memoryId, ')
+          ..write('taskId: $taskId, ')
           ..write('type: $type, ')
           ..write('fileName: $fileName, ')
           ..write('sizeBytes: $sizeBytes, ')
@@ -933,32 +931,32 @@ class AttachmentsCompanion extends UpdateCompanion<Attachment> {
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
-  late final $MemoriesTable memories = $MemoriesTable(this);
+  late final $TasksTable tasks = $TasksTable(this);
   late final $AttachmentsTable attachments = $AttachmentsTable(this);
-  late final Index memoriesCategoryIdx = Index(
-    'memories_category_idx',
-    'CREATE INDEX memories_category_idx ON memories (category)',
+  late final Index tasksCategoryIdx = Index(
+    'tasks_category_idx',
+    'CREATE INDEX tasks_category_idx ON tasks (category)',
   );
-  late final Index memoriesUpdatedIdx = Index(
-    'memories_updated_idx',
-    'CREATE INDEX memories_updated_idx ON memories (updated_at)',
+  late final Index tasksUpdatedIdx = Index(
+    'tasks_updated_idx',
+    'CREATE INDEX tasks_updated_idx ON tasks (updated_at)',
   );
-  late final MemoriesDao memoriesDao = MemoriesDao(this as AppDatabase);
+  late final TasksDao tasksDao = TasksDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [
-    memories,
+    tasks,
     attachments,
-    memoriesCategoryIdx,
-    memoriesUpdatedIdx,
+    tasksCategoryIdx,
+    tasksUpdatedIdx,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
     WritePropagation(
       on: TableUpdateQuery.onTableName(
-        'memories',
+        'tasks',
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('attachments', kind: UpdateKind.delete)],
@@ -966,40 +964,40 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   ]);
 }
 
-typedef $$MemoriesTableCreateCompanionBuilder = MemoriesCompanion Function({
+typedef $$TasksTableCreateCompanionBuilder = TasksCompanion Function({
   Value<int> id,
   required String title,
   Value<String> description,
-  required MemoryCategory category,
+  required TaskCategory category,
   Value<String> normalizedText,
   Value<DateTime> createdAt,
   Value<DateTime> updatedAt,
 });
-typedef $$MemoriesTableUpdateCompanionBuilder = MemoriesCompanion Function({
+typedef $$TasksTableUpdateCompanionBuilder = TasksCompanion Function({
   Value<int> id,
   Value<String> title,
   Value<String> description,
-  Value<MemoryCategory> category,
+  Value<TaskCategory> category,
   Value<String> normalizedText,
   Value<DateTime> createdAt,
   Value<DateTime> updatedAt,
 });
 
-final class $$MemoriesTableReferences
-    extends BaseReferences<_$AppDatabase, $MemoriesTable, Memory> {
-  $$MemoriesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+final class $$TasksTableReferences
+    extends BaseReferences<_$AppDatabase, $TasksTable, Task> {
+  $$TasksTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
   static MultiTypedResultKey<$AttachmentsTable, List<Attachment>>
   _attachmentsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
     db.attachments,
-    aliasName: 'memories__id__attachments__memory_id',
+    aliasName: 'tasks__id__attachments__task_id',
   );
 
   $$AttachmentsTableProcessedTableManager get attachmentsRefs {
     final manager = $$AttachmentsTableTableManager(
       $_db,
       $_db.attachments,
-    ).filter((f) => f.memoryId.id.sqlEquals($_itemColumn<int>('id')!));
+    ).filter((f) => f.taskId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_attachmentsRefsTable($_db));
     return ProcessedTableManager(
@@ -1008,9 +1006,8 @@ final class $$MemoriesTableReferences
   }
 }
 
-class $$MemoriesTableFilterComposer
-    extends Composer<_$AppDatabase, $MemoriesTable> {
-  $$MemoriesTableFilterComposer({
+class $$TasksTableFilterComposer extends Composer<_$AppDatabase, $TasksTable> {
+  $$TasksTableFilterComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -1032,7 +1029,7 @@ class $$MemoriesTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnWithTypeConverterFilters<MemoryCategory, MemoryCategory, String>
+  ColumnWithTypeConverterFilters<TaskCategory, TaskCategory, String>
   get category => $composableBuilder(
     column: $table.category,
     builder: (column) => ColumnWithTypeConverterFilters(column),
@@ -1060,7 +1057,7 @@ class $$MemoriesTableFilterComposer
       composer: this,
       getCurrentColumn: (t) => t.id,
       referencedTable: $db.attachments,
-      getReferencedColumn: (t) => t.memoryId,
+      getReferencedColumn: (t) => t.taskId,
       builder:
           (
             joinBuilder, {
@@ -1079,9 +1076,9 @@ class $$MemoriesTableFilterComposer
   }
 }
 
-class $$MemoriesTableOrderingComposer
-    extends Composer<_$AppDatabase, $MemoriesTable> {
-  $$MemoriesTableOrderingComposer({
+class $$TasksTableOrderingComposer
+    extends Composer<_$AppDatabase, $TasksTable> {
+  $$TasksTableOrderingComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -1124,9 +1121,9 @@ class $$MemoriesTableOrderingComposer
   );
 }
 
-class $$MemoriesTableAnnotationComposer
-    extends Composer<_$AppDatabase, $MemoriesTable> {
-  $$MemoriesTableAnnotationComposer({
+class $$TasksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $TasksTable> {
+  $$TasksTableAnnotationComposer({
     required super.$db,
     required super.$table,
     super.joinBuilder,
@@ -1144,7 +1141,7 @@ class $$MemoriesTableAnnotationComposer
     builder: (column) => column,
   );
 
-  GeneratedColumnWithTypeConverter<MemoryCategory, String> get category =>
+  GeneratedColumnWithTypeConverter<TaskCategory, String> get category =>
       $composableBuilder(column: $table.category, builder: (column) => column);
 
   GeneratedColumn<String> get normalizedText => $composableBuilder(
@@ -1165,7 +1162,7 @@ class $$MemoriesTableAnnotationComposer
       composer: this,
       getCurrentColumn: (t) => t.id,
       referencedTable: $db.attachments,
-      getReferencedColumn: (t) => t.memoryId,
+      getReferencedColumn: (t) => t.taskId,
       builder:
           (
             joinBuilder, {
@@ -1184,42 +1181,42 @@ class $$MemoriesTableAnnotationComposer
   }
 }
 
-class $$MemoriesTableTableManager
+class $$TasksTableTableManager
     extends
         RootTableManager<
           _$AppDatabase,
-          $MemoriesTable,
-          Memory,
-          $$MemoriesTableFilterComposer,
-          $$MemoriesTableOrderingComposer,
-          $$MemoriesTableAnnotationComposer,
-          $$MemoriesTableCreateCompanionBuilder,
-          $$MemoriesTableUpdateCompanionBuilder,
-          (Memory, $$MemoriesTableReferences),
-          Memory,
+          $TasksTable,
+          Task,
+          $$TasksTableFilterComposer,
+          $$TasksTableOrderingComposer,
+          $$TasksTableAnnotationComposer,
+          $$TasksTableCreateCompanionBuilder,
+          $$TasksTableUpdateCompanionBuilder,
+          (Task, $$TasksTableReferences),
+          Task,
           PrefetchHooks Function({bool attachmentsRefs})
         > {
-  $$MemoriesTableTableManager(_$AppDatabase db, $MemoriesTable table)
+  $$TasksTableTableManager(_$AppDatabase db, $TasksTable table)
     : super(
         TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
-              $$MemoriesTableFilterComposer($db: db, $table: table),
+              $$TasksTableFilterComposer($db: db, $table: table),
           createOrderingComposer: () =>
-              $$MemoriesTableOrderingComposer($db: db, $table: table),
+              $$TasksTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
-              $$MemoriesTableAnnotationComposer($db: db, $table: table),
+              $$TasksTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
                 Value<String> title = const Value.absent(),
                 Value<String> description = const Value.absent(),
-                Value<MemoryCategory> category = const Value.absent(),
+                Value<TaskCategory> category = const Value.absent(),
                 Value<String> normalizedText = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<DateTime> updatedAt = const Value.absent(),
-              }) => MemoriesCompanion(
+              }) => TasksCompanion(
                 id: id,
                 title: title,
                 description: description,
@@ -1233,11 +1230,11 @@ class $$MemoriesTableTableManager
                 Value<int> id = const Value.absent(),
                 required String title,
                 Value<String> description = const Value.absent(),
-                required MemoryCategory category,
+                required TaskCategory category,
                 Value<String> normalizedText = const Value.absent(),
                 Value<DateTime> createdAt = const Value.absent(),
                 Value<DateTime> updatedAt = const Value.absent(),
-              }) => MemoriesCompanion.insert(
+              }) => TasksCompanion.insert(
                 id: id,
                 title: title,
                 description: description,
@@ -1249,8 +1246,8 @@ class $$MemoriesTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$MemoriesTable, Memory>(table),
-                  $$MemoriesTableReferences(db, table, e),
+                  e.readTable<$TasksTable, Task>(table),
+                  $$TasksTableReferences(db, table, e),
                 ),
               )
               .toList(),
@@ -1262,21 +1259,14 @@ class $$MemoriesTableTableManager
               getPrefetchedDataCallback: (items) async {
                 return [
                   if (attachmentsRefs)
-                    await $_getPrefetchedData<
-                      Memory,
-                      $MemoriesTable,
-                      Attachment
-                    >(
+                    await $_getPrefetchedData<Task, $TasksTable, Attachment>(
                       currentTable: table,
-                      referencedTable: $$MemoriesTableReferences
+                      referencedTable: $$TasksTableReferences
                           ._attachmentsRefsTable(db),
-                      managerFromTypedResult: (p0) => $$MemoriesTableReferences(
-                        db,
-                        table,
-                        p0,
-                      ).attachmentsRefs,
+                      managerFromTypedResult: (p0) =>
+                          $$TasksTableReferences(db, table, p0).attachmentsRefs,
                       referencedItemsForCurrentItem: (item, referencedItems) =>
-                          referencedItems.where((e) => e.memoryId == item.id),
+                          referencedItems.where((e) => e.taskId == item.id),
                       typedResults: items,
                     ),
                 ];
@@ -1287,24 +1277,24 @@ class $$MemoriesTableTableManager
       );
 }
 
-typedef $$MemoriesTableProcessedTableManager =
+typedef $$TasksTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
-      $MemoriesTable,
-      Memory,
-      $$MemoriesTableFilterComposer,
-      $$MemoriesTableOrderingComposer,
-      $$MemoriesTableAnnotationComposer,
-      $$MemoriesTableCreateCompanionBuilder,
-      $$MemoriesTableUpdateCompanionBuilder,
-      (Memory, $$MemoriesTableReferences),
-      Memory,
+      $TasksTable,
+      Task,
+      $$TasksTableFilterComposer,
+      $$TasksTableOrderingComposer,
+      $$TasksTableAnnotationComposer,
+      $$TasksTableCreateCompanionBuilder,
+      $$TasksTableUpdateCompanionBuilder,
+      (Task, $$TasksTableReferences),
+      Task,
       PrefetchHooks Function({bool attachmentsRefs})
     >;
 typedef $$AttachmentsTableCreateCompanionBuilder =
     AttachmentsCompanion Function({
       Value<int> id,
-      required int memoryId,
+      required int taskId,
       required AttachmentType type,
       required String fileName,
       Value<int> sizeBytes,
@@ -1314,7 +1304,7 @@ typedef $$AttachmentsTableCreateCompanionBuilder =
 typedef $$AttachmentsTableUpdateCompanionBuilder =
     AttachmentsCompanion Function({
       Value<int> id,
-      Value<int> memoryId,
+      Value<int> taskId,
       Value<AttachmentType> type,
       Value<String> fileName,
       Value<int> sizeBytes,
@@ -1326,17 +1316,17 @@ final class $$AttachmentsTableReferences
     extends BaseReferences<_$AppDatabase, $AttachmentsTable, Attachment> {
   $$AttachmentsTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
-  static $MemoriesTable _memoryIdTable(_$AppDatabase db) =>
-      db.memories.createAlias('attachments__memory_id__memories__id');
+  static $TasksTable _taskIdTable(_$AppDatabase db) =>
+      db.tasks.createAlias('attachments__task_id__tasks__id');
 
-  $$MemoriesTableProcessedTableManager get memoryId {
-    final $_column = $_itemColumn<int>('memory_id')!;
+  $$TasksTableProcessedTableManager get taskId {
+    final $_column = $_itemColumn<int>('task_id')!;
 
-    final manager = $$MemoriesTableTableManager(
+    final manager = $$TasksTableTableManager(
       $_db,
-      $_db.memories,
+      $_db.tasks,
     ).filter((f) => f.id.sqlEquals($_column));
-    final item = $_typedResult.readTableOrNull(_memoryIdTable($_db));
+    final item = $_typedResult.readTableOrNull(_taskIdTable($_db));
     if (item == null) return manager;
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: [item]),
@@ -1384,20 +1374,20 @@ class $$AttachmentsTableFilterComposer
     builder: (column) => ColumnFilters(column),
   );
 
-  $$MemoriesTableFilterComposer get memoryId {
-    final $$MemoriesTableFilterComposer composer = $composerBuilder(
+  $$TasksTableFilterComposer get taskId {
+    final $$TasksTableFilterComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.memoryId,
-      referencedTable: $db.memories,
+      getCurrentColumn: (t) => t.taskId,
+      referencedTable: $db.tasks,
       getReferencedColumn: (t) => t.id,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $$MemoriesTableFilterComposer(
+          }) => $$TasksTableFilterComposer(
             $db: $db,
-            $table: $db.memories,
+            $table: $db.tasks,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -1447,20 +1437,20 @@ class $$AttachmentsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  $$MemoriesTableOrderingComposer get memoryId {
-    final $$MemoriesTableOrderingComposer composer = $composerBuilder(
+  $$TasksTableOrderingComposer get taskId {
+    final $$TasksTableOrderingComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.memoryId,
-      referencedTable: $db.memories,
+      getCurrentColumn: (t) => t.taskId,
+      referencedTable: $db.tasks,
       getReferencedColumn: (t) => t.id,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $$MemoriesTableOrderingComposer(
+          }) => $$TasksTableOrderingComposer(
             $db: $db,
-            $table: $db.memories,
+            $table: $db.tasks,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -1500,20 +1490,20 @@ class $$AttachmentsTableAnnotationComposer
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
 
-  $$MemoriesTableAnnotationComposer get memoryId {
-    final $$MemoriesTableAnnotationComposer composer = $composerBuilder(
+  $$TasksTableAnnotationComposer get taskId {
+    final $$TasksTableAnnotationComposer composer = $composerBuilder(
       composer: this,
-      getCurrentColumn: (t) => t.memoryId,
-      referencedTable: $db.memories,
+      getCurrentColumn: (t) => t.taskId,
+      referencedTable: $db.tasks,
       getReferencedColumn: (t) => t.id,
       builder:
           (
             joinBuilder, {
             $addJoinBuilderToRootComposer,
             $removeJoinBuilderFromRootComposer,
-          }) => $$MemoriesTableAnnotationComposer(
+          }) => $$TasksTableAnnotationComposer(
             $db: $db,
-            $table: $db.memories,
+            $table: $db.tasks,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -1537,7 +1527,7 @@ class $$AttachmentsTableTableManager
           $$AttachmentsTableUpdateCompanionBuilder,
           (Attachment, $$AttachmentsTableReferences),
           Attachment,
-          PrefetchHooks Function({bool memoryId})
+          PrefetchHooks Function({bool taskId})
         > {
   $$AttachmentsTableTableManager(_$AppDatabase db, $AttachmentsTable table)
     : super(
@@ -1553,7 +1543,7 @@ class $$AttachmentsTableTableManager
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                Value<int> memoryId = const Value.absent(),
+                Value<int> taskId = const Value.absent(),
                 Value<AttachmentType> type = const Value.absent(),
                 Value<String> fileName = const Value.absent(),
                 Value<int> sizeBytes = const Value.absent(),
@@ -1561,7 +1551,7 @@ class $$AttachmentsTableTableManager
                 Value<DateTime> createdAt = const Value.absent(),
               }) => AttachmentsCompanion(
                 id: id,
-                memoryId: memoryId,
+                taskId: taskId,
                 type: type,
                 fileName: fileName,
                 sizeBytes: sizeBytes,
@@ -1571,7 +1561,7 @@ class $$AttachmentsTableTableManager
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
-                required int memoryId,
+                required int taskId,
                 required AttachmentType type,
                 required String fileName,
                 Value<int> sizeBytes = const Value.absent(),
@@ -1579,7 +1569,7 @@ class $$AttachmentsTableTableManager
                 Value<DateTime> createdAt = const Value.absent(),
               }) => AttachmentsCompanion.insert(
                 id: id,
-                memoryId: memoryId,
+                taskId: taskId,
                 type: type,
                 fileName: fileName,
                 sizeBytes: sizeBytes,
@@ -1594,7 +1584,7 @@ class $$AttachmentsTableTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({memoryId = false}) {
+          prefetchHooksCallback: ({taskId = false}) {
             return PrefetchHooks(
               db: db,
               explicitlyWatchedTables: [],
@@ -1614,14 +1604,14 @@ class $$AttachmentsTableTableManager
                       dynamic
                     >
                   >(state) {
-                    if (memoryId) {
+                    if (taskId) {
                       state = state.withJoin(
                         currentTable: table,
-                        currentColumn: table.memoryId,
+                        currentColumn: table.taskId,
                         referencedTable: $$AttachmentsTableReferences
-                            ._memoryIdTable(db),
+                            ._taskIdTable(db),
                         referencedColumn: $$AttachmentsTableReferences
-                            ._memoryIdTable(db)
+                            ._taskIdTable(db)
                             .id,
                       ) as T;
                     }
@@ -1649,14 +1639,14 @@ typedef $$AttachmentsTableProcessedTableManager =
       $$AttachmentsTableUpdateCompanionBuilder,
       (Attachment, $$AttachmentsTableReferences),
       Attachment,
-      PrefetchHooks Function({bool memoryId})
+      PrefetchHooks Function({bool taskId})
     >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
-  $$MemoriesTableTableManager get memories =>
-      $$MemoriesTableTableManager(_db, _db.memories);
+  $$TasksTableTableManager get tasks =>
+      $$TasksTableTableManager(_db, _db.tasks);
   $$AttachmentsTableTableManager get attachments =>
       $$AttachmentsTableTableManager(_db, _db.attachments);
 }

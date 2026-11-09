@@ -4,20 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/models/memory_model.dart';
+import '../../../../core/models/task_model.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
-import '../../../../core/widgets/memory_category_selection_widget.dart';
+import '../../../../core/widgets/task_category_selection_widget.dart';
 import '../cubits/edit_memory_cubit.dart';
 import '../wigdets/editable_attachments_widget.dart';
 import '../wigdets/update_memory_form.dart';
 
 class EditMemoryScreen extends StatefulWidget {
-  final MemoryModel model;
+  final TaskModel model;
 
   const EditMemoryScreen({super.key, required this.model});
 
@@ -29,7 +29,7 @@ class _EditMemoryScreenState extends State<EditMemoryScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final TextEditingController _title;
   late final TextEditingController _description;
-  late MemoryCategory _selectedCategory;
+  late TaskCategory _selectedCategory;
   final ValueNotifier<bool> _isModelUpdated = ValueNotifier(false);
 
   @override
@@ -95,7 +95,7 @@ class _EditMemoryScreenState extends State<EditMemoryScreen> {
           children: [
             UpdateMemoryForm(formKey: _formKey, title: _title, description: _description),
             18.verticalSpace,
-            MemoryCategorySelectionWidget(
+            TaskCategorySelectionWidget(
               initialCategory: widget.model.category,
               onSelected: (category) {
                 _selectedCategory = category;

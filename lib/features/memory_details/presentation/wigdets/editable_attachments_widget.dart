@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../core/models/memory_attachment_input.dart';
+import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 import '../cubits/edit_memory_cubit.dart';
@@ -88,7 +88,7 @@ class EditableAttachmentsWidget extends StatelessWidget {
 
   Widget _pendingAttachment(
     BuildContext context,
-    MemoryAttachmentInput item,
+    TaskAttachmentInput item,
     EditMemoryCubit cubit,
   ) {
     return Stack(

@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../database/app_database.dart';
-import '../database/daos/memories_dao.dart';
+import '../database/daos/tasks_dao.dart';
 
 @module
 abstract class Modules {
@@ -15,5 +15,5 @@ abstract class Modules {
   AppDatabase get database => AppDatabase(driftDatabase(name: 'app_db'));
 
   @lazySingleton
-  MemoriesDao memoriesDao(AppDatabase db) => db.memoriesDao;
+  TasksDao memoriesDao(AppDatabase db) => db.tasksDao;
 }

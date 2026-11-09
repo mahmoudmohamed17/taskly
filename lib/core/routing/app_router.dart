@@ -14,7 +14,7 @@ import '../../features/search/presentation/screens/voice_search_results_screen.d
 import '../cubits/app_flow_cubit.dart';
 import '../cubits/app_flow_state.dart';
 import '../di/di.dart';
-import '../models/memory_model.dart';
+import '../models/task_model.dart';
 import 'app_routes.dart';
 import 'go_router_listenable_builder.dart';
 import 'page_transition_builder.dart';
@@ -67,10 +67,10 @@ class AppRouter {
           builder: (context, state) => const VoiceSearchResultsScreen(),
         ),
         _route(
-          AppRoutes.memoryDetails,
+          AppRoutes.taskDetails,
           transition: PageTransitionType.fadeSlide,
           builder: (context, state) {
-            final model = state.extra as MemoryModel;
+            final model = state.extra as TaskModel;
             return BlocProvider(
               create: (_) => getIt<MemoryDetailsCubit>()..watch(model.id),
               child: MemoryDetailsScreen(model: model),
@@ -78,10 +78,10 @@ class AppRouter {
           },
         ),
         _route(
-          AppRoutes.memoryEdit,
+          AppRoutes.taskEdit,
           transition: PageTransitionType.fadeSlide,
           builder: (context, state) {
-            final model = state.extra as MemoryModel;
+            final model = state.extra as TaskModel;
             return BlocProvider(
               create: (_) => getIt<EditMemoryCubit>(),
               child: EditMemoryScreen(model: model),

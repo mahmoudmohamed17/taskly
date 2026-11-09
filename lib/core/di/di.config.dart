@@ -25,9 +25,9 @@ import '../cubits/app_flow_cubit.dart' as _i49;
 import '../cubits/theme_cubit.dart' as _i525;
 import '../cubits/voice_recording_cubit.dart' as _i1068;
 import '../database/app_database.dart' as _i982;
-import '../database/daos/memories_dao.dart' as _i384;
-import '../repositories/memory_repository.dart' as _i536;
-import '../repositories/memory_repository_impl.dart' as _i775;
+import '../database/daos/tasks_dao.dart' as _i897;
+import '../repositories/task_repository.dart' as _i626;
+import '../repositories/task_repository_impl.dart' as _i30;
 import '../services/attachment_file_service.dart' as _i159;
 import '../services/voice_recording_service.dart' as _i262;
 import '../utils/shared_prefs_helper.dart' as _i964;
@@ -59,32 +59,32 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1068.VoiceRecordingCubit>(
       () => _i1068.VoiceRecordingCubit(gh<_i262.VoiceRecordingService>()),
     );
-    gh.lazySingleton<_i384.MemoriesDao>(
+    gh.lazySingleton<_i897.TasksDao>(
       () => modules.memoriesDao(gh<_i982.AppDatabase>()),
-    );
-    gh.lazySingleton<_i536.MemoryRepository>(
-      () => _i775.MemoryRepositoryImpl(
-        gh<_i384.MemoriesDao>(),
-        gh<_i159.AttachmentFileService>(),
-      ),
     );
     gh.singleton<_i49.AppFlowCubit>(
       () => _i49.AppFlowCubit(gh<_i964.SharedPrefsHelper>()),
     );
+    gh.lazySingleton<_i626.TaskRepository>(
+      () => _i30.TaskRepositoryImpl(
+        gh<_i897.TasksDao>(),
+        gh<_i159.AttachmentFileService>(),
+      ),
+    );
     gh.factory<_i762.AddMemoryCubit>(
-      () => _i762.AddMemoryCubit(gh<_i536.MemoryRepository>()),
+      () => _i762.AddMemoryCubit(gh<_i626.TaskRepository>()),
     );
     gh.factory<_i531.MemoriesListCubit>(
-      () => _i531.MemoriesListCubit(gh<_i536.MemoryRepository>()),
+      () => _i531.MemoriesListCubit(gh<_i626.TaskRepository>()),
     );
     gh.factory<_i1001.EditMemoryCubit>(
-      () => _i1001.EditMemoryCubit(gh<_i536.MemoryRepository>()),
+      () => _i1001.EditMemoryCubit(gh<_i626.TaskRepository>()),
     );
     gh.factory<_i349.MemoryDetailsCubit>(
-      () => _i349.MemoryDetailsCubit(gh<_i536.MemoryRepository>()),
+      () => _i349.MemoryDetailsCubit(gh<_i626.TaskRepository>()),
     );
     gh.factory<_i51.SearchCubit>(
-      () => _i51.SearchCubit(gh<_i536.MemoryRepository>()),
+      () => _i51.SearchCubit(gh<_i626.TaskRepository>()),
     );
     return this;
   }

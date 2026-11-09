@@ -1,13 +1,13 @@
 import 'package:drift/drift.dart';
 
 import '../utils/enums.dart';
-import 'daos/memories_dao.dart';
+import 'daos/tasks_dao.dart';
 import 'tables/attachments.dart';
-import 'tables/memories.dart';
+import 'tables/tasks.dart';
 
 part 'app_database.g.dart';
 
-@DriftDatabase(tables: [Memories, Attachments], daos: [MemoriesDao])
+@DriftDatabase(tables: [Tasks, Attachments], daos: [TasksDao])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.executor);
 

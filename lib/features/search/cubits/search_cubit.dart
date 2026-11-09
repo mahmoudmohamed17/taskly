@@ -4,21 +4,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../config/error_handler/error_handler.dart';
-import '../../../core/models/memory_model.dart';
-import '../../../core/repositories/memory_repository.dart';
+import '../../../core/models/task_model.dart';
+import '../../../core/repositories/task_repository.dart';
 import '../../../core/utils/enums.dart';
 
 part 'search_state.dart';
 
 @injectable
 class SearchCubit extends Cubit<SearchState> {
-  final MemoryRepository _repo;
+  final TaskRepository _repo;
 
-  StreamSubscription<Result<List<MemoryModel>>>? _sub;
+  StreamSubscription<Result<List<TaskModel>>>? _sub;
   Timer? _debounce;
 
   String _query = '';
-  MemoryCategory? _category;
+  TaskCategory? _category;
 
   SearchCubit(this._repo) : super(const SearchInitial());
 
@@ -31,7 +31,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   /// Called when the user picks a category tag. Searches immediately.
-  void onCategoryChanged(MemoryCategory? category) {
+  void onCategoryChanged(TaskCategory? category) {
     _category = category;
     _debounce?.cancel();
     _search();
@@ -65,7 +65,7 @@ class SearchCubit extends Cubit<SearchState> {
     _sub?.cancel();
     emit(const SearchLoading());
 
-    _sub = _repo.watchMemories(query: _query, category: _category).listen(
+    _sub = _repo.watchTasks(query: _query, category: _category).listen(
       (result) {
         if (isClosed) return;
         result.fold(

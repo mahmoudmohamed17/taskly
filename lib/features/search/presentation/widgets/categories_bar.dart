@@ -7,7 +7,7 @@ import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/extensions.dart';
 
 class CategoriesBar extends StatefulWidget {
-  final Function(MemoryCategory? category) onCategoryChanged;
+  final Function(TaskCategory? category) onCategoryChanged;
 
   const CategoriesBar({super.key, required this.onCategoryChanged});
 
@@ -18,12 +18,12 @@ class CategoriesBar extends StatefulWidget {
 class _CategoriesBarState extends State<CategoriesBar> {
   final ValueNotifier<int?> _current = ValueNotifier(null);
 
-  List<MemoryCategory> get _categories => [
-    MemoryCategory.medical,
-    MemoryCategory.financial,
-    MemoryCategory.friends,
-    MemoryCategory.family,
-    MemoryCategory.personal,
+  List<TaskCategory> get _categories => [
+    TaskCategory.medical,
+    TaskCategory.financial,
+    TaskCategory.friends,
+    TaskCategory.family,
+    TaskCategory.personal,
   ];
 
   @override
@@ -51,7 +51,7 @@ class _CategoriesBarState extends State<CategoriesBar> {
     );
   }
 
-  Widget _bagde(BuildContext context, {required MemoryCategory category, bool isActive = false}) {
+  Widget _bagde(BuildContext context, {required TaskCategory category, bool isActive = false}) {
     return AnimatedContainer(
       duration: AppMotion.fast,
       decoration: BoxDecoration(

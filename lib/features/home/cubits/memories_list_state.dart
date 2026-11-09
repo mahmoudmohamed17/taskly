@@ -9,8 +9,8 @@ final class MemoriesListLoading extends MemoriesListState {
 }
 
 final class MemoriesListLoaded extends MemoriesListState {
-  final List<MemoryModel> memories;
-  final MemoryCategory? activeCategory;
+  final List<TaskModel> memories;
+  final TaskCategory? activeCategory;
 
   const MemoriesListLoaded({
     required this.memories,

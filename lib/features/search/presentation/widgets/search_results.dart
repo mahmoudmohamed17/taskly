@@ -6,8 +6,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../../../core/widgets/memory_item.dart';
-import '../../../../core/models/memory_model.dart';
+import '../../../../core/widgets/task_item.dart';
+import '../../../../core/models/task_model.dart';
 import '../../../../core/widgets/skeletonizer_widget.dart';
 import '../../cubits/search_cubit.dart';
 
@@ -29,7 +29,7 @@ class SearchResults extends StatelessWidget {
     );
   }
 
-  Widget _loadedState(BuildContext context, List<MemoryModel> results) {
+  Widget _loadedState(BuildContext context, List<TaskModel> results) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       spacing: 12.h,
@@ -52,7 +52,7 @@ class SearchResults extends StatelessWidget {
         Expanded(
           child: ListView.separated(
             itemBuilder: (_, index) {
-              return MemoryItem(item: results[index]);
+              return TaskItem(item: results[index]);
             },
             separatorBuilder: (_, _) => 16.verticalSpace,
             itemCount: results.length,
@@ -90,7 +90,7 @@ class SearchResults extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
-        children: List.generate(3, (_) => MemoryItem(item: MemoryModel.mock())),
+        children: List.generate(3, (_) => TaskItem(item: TaskModel.mock())),
       ),
     );
   }

@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../../../core/models/memory_model.dart';
-import '../../../../core/widgets/memory_item.dart';
+import '../../../../core/models/task_model.dart';
+import '../../../../core/widgets/task_item.dart';
 import '../../cubits/memories_list_cubit.dart';
 import 'memories_list_header.dart';
 import '../../../../core/widgets/skeletonizer_widget.dart';
@@ -29,7 +29,7 @@ class MemoriesList extends StatelessWidget {
     );
   }
 
-  Widget _buildLoaded(BuildContext context, List<MemoryModel> memories) {
+  Widget _buildLoaded(BuildContext context, List<TaskModel> memories) {
     if (memories.isEmpty) return _empty(context);
 
     return Column(
@@ -42,7 +42,7 @@ class MemoriesList extends StatelessWidget {
           children: memories
               .take(7)
               .map(
-                (item) => MemoryItem(item: item),
+                (item) => TaskItem(item: item),
               )
               .toList(),
         ),
@@ -57,7 +57,7 @@ class MemoriesList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const MemoriesListHeader(),
-          ...List.generate(3, (_) => MemoryItem(item: MemoryModel.mock())),
+          ...List.generate(3, (_) => TaskItem(item: TaskModel.mock())),
         ],
       ),
     );

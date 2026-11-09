@@ -11,7 +11,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
-import '../../../../core/models/memory_model.dart';
+import '../../../../core/models/task_model.dart';
 import '../cubits/memory_details_cubit.dart';
 import '../wigdets/attachments_widget.dart';
 import '../wigdets/description_widget.dart';
@@ -19,7 +19,7 @@ import '../wigdets/details_footer.dart';
 import '../wigdets/details_header.dart';
 
 class MemoryDetailsScreen extends StatelessWidget {
-  final MemoryModel model;
+  final TaskModel model;
 
   const MemoryDetailsScreen({super.key, required this.model});
 
@@ -45,7 +45,7 @@ class MemoryDetailsScreen extends StatelessWidget {
               centerTitle: true,
               actions: [
                 IconButton(
-                  onPressed: () => context.push(AppRoutes.memoryEdit, extra: current),
+                  onPressed: () => context.push(AppRoutes.taskEdit, extra: current),
                   icon: FaIcon(
                     FontAwesomeIcons.penToSquare,
                     size: 22.sp,
@@ -75,7 +75,7 @@ class MemoryDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _loading(BuildContext context, MemoryModel current) {
+  Widget _loading(BuildContext context, TaskModel current) {
     return Skeletonizer(
       effect: ShimmerEffect(
         baseColor: context.colorScheme.outlineVariant,
@@ -86,7 +86,7 @@ class MemoryDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _loaded(MemoryModel current) {
+  Widget _loaded(TaskModel current) {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       children: [

@@ -4,17 +4,17 @@ import 'package:go_router/go_router.dart';
 
 import '../routing/app_routes.dart';
 import '../utils/extensions.dart';
-import '../models/memory_model.dart';
+import '../models/task_model.dart';
 
-class MemoryItem extends StatelessWidget {
-  final MemoryModel item;
+class TaskItem extends StatelessWidget {
+  final TaskModel item;
 
-  const MemoryItem({super.key, required this.item});
+  const TaskItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(AppRoutes.memoryDetails, extra: item),
+      onTap: () => context.push(AppRoutes.taskDetails, extra: item),
       child: Card(
         child: ListTile(
           // contentPadding: const EdgeInsets.all(8),

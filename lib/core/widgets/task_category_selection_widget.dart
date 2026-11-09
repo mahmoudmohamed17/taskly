@@ -7,9 +7,10 @@ import '../utils/app_strings.dart';
 import '../utils/enums.dart';
 import '../utils/extensions.dart';
 
-class MemoryCategorySelectionWidget extends StatefulWidget {
-  final MemoryCategory? initialCategory;
-  final Function(MemoryCategory category) onSelected;
+class TaskCategorySelectionWidget extends StatefulWidget {
+  final TaskCategory? initialCategory;
+
+  final Function(TaskCategory category) onSelected;
   final Color? gridItemColor;
 
   const new({
@@ -20,10 +21,10 @@ class MemoryCategorySelectionWidget extends StatefulWidget {
   });
 
   @override
-  State<MemoryCategorySelectionWidget> createState() => _MemoryCategorySelectionWidgetState();
+  State<TaskCategorySelectionWidget> createState() => _TaskCategorySelectionWidgetState();
 }
 
-class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionWidget> {
+class _TaskCategorySelectionWidgetState extends State<TaskCategorySelectionWidget> {
   late final ValueNotifier<int?> _selectedIndex;
 
   @override
@@ -31,7 +32,7 @@ class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionW
     super.initState();
 
     if (widget.initialCategory != null) {
-      _selectedIndex = ValueNotifier<int?>(MemoryCategory.values.indexOf(widget.initialCategory!));
+      _selectedIndex = ValueNotifier<int?>(TaskCategory.values.indexOf(widget.initialCategory!));
     } else {
       _selectedIndex = ValueNotifier<int?>(null);
     }
@@ -63,7 +64,7 @@ class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionW
         crossAxisSpacing: 8.w,
         childAspectRatio: 1.2.sp,
       ),
-      itemCount: MemoryCategory.values.length,
+      itemCount: TaskCategory.values.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
@@ -73,9 +74,9 @@ class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionW
           return GestureDetector(
             onTap: () {
               _selectedIndex.value = index;
-              widget.onSelected.call(MemoryCategory.values[index]);
+              widget.onSelected.call(TaskCategory.values[index]);
             },
-            child: _category(context, category: MemoryCategory.values[index], isActive: value == index),
+            child: _category(context, category: TaskCategory.values[index], isActive: value == index),
           );
         },
       ),
@@ -84,7 +85,7 @@ class _MemoryCategorySelectionWidgetState extends State<MemoryCategorySelectionW
 
   Widget _category(
     BuildContext context, {
-    required MemoryCategory category,
+    required TaskCategory category,
     bool isActive = false,
   }) {
     return AnimatedContainer(
