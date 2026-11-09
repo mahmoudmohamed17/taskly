@@ -5,10 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 
-class MemoriesListHeader extends StatelessWidget {
+class TasksListHeader extends StatelessWidget {
   final int count;
 
-  const MemoriesListHeader({super.key, this.count = 0});
+  const TasksListHeader({super.key, this.count = 0});
 
   @override
   Widget build(BuildContext context) {

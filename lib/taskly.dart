@@ -10,7 +10,7 @@ import 'core/di/di.dart';
 import 'core/routing/app_router.dart';
 import 'core/theme/app_theme.dart';
 
-class MyApp extends StatelessWidget {
+class Taskly extends StatelessWidget {
   const new({super.key});
 
   @override

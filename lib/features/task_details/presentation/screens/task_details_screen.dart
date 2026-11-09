@@ -18,10 +18,10 @@ import '../wigdets/description_widget.dart';
 import '../wigdets/details_footer.dart';
 import '../wigdets/details_header.dart';
 
-class MemoryDetailsScreen extends StatelessWidget {
+class TaskDetailsScreen extends StatelessWidget {
   final TaskModel model;
 
-  const MemoryDetailsScreen({super.key, required this.model});
+  const TaskDetailsScreen({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {

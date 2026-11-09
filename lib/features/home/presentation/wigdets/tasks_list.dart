@@ -10,11 +10,11 @@ import '../../../../core/utils/extensions.dart';
 import '../../../../core/models/task_model.dart';
 import '../../../../core/widgets/task_item.dart';
 import '../../cubits/memories_list_cubit.dart';
-import 'memories_list_header.dart';
+import 'tasks_list_header.dart';
 import '../../../../core/widgets/skeletonizer_widget.dart';
 
-class MemoriesList extends StatelessWidget {
-  const MemoriesList({super.key});
+class TasksList extends StatelessWidget {
+  const TasksList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class MemoriesList extends StatelessWidget {
       spacing: 12.h,
       mainAxisSize: MainAxisSize.min,
       children: [
-        MemoriesListHeader(count: memories.length),
+        TasksListHeader(count: memories.length),
         Column(
           spacing: 8.h,
           children: memories
@@ -56,7 +56,7 @@ class MemoriesList extends StatelessWidget {
         spacing: 12.h,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const MemoriesListHeader(),
+          const TasksListHeader(),
           ...List.generate(3, (_) => TaskItem(item: TaskModel.mock())),
         ],
       ),

@@ -6,8 +6,8 @@ import '../../../../core/di/di.dart';
 import '../../cubits/add_memory_cubit.dart';
 import '../wigdets/home_header.dart';
 import '../wigdets/home_search_field.dart';
-import '../wigdets/memories_list.dart';
-import '../wigdets/memory_creation_bottom_sheet.dart';
+import '../wigdets/tasks_list.dart';
+import '../wigdets/task_creation_bottom_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                     16.verticalSpace,
                     const HomeSearchField(),
                     16.verticalSpace,
-                    const MemoriesList(),
+                    const TasksList(),
                     64.verticalSpace,
                   ],
                 ),
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             useSafeArea: true,
             builder: (_) => BlocProvider(
               create: (_) => getIt<AddMemoryCubit>(),
-              child: const MemoryCreationBottomSheet(),
+              child: const TaskCreationBottomSheet(),
             ),
           );
         },

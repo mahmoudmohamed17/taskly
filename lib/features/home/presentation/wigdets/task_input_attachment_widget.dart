@@ -7,10 +7,10 @@ import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../cubits/add_memory_cubit.dart';
 
-class MemoryInputAttachmentWidget extends StatelessWidget {
+class TaskInputAttachmentWidget extends StatelessWidget {
   final TaskAttachmentInput input;
 
-  const MemoryInputAttachmentWidget({super.key, required this.input});
+  const TaskInputAttachmentWidget({super.key, required this.input});
 
   @override
   Widget build(BuildContext context) {

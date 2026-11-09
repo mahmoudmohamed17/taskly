@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/home/cubits/memories_list_cubit.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
-import '../../features/memory_details/presentation/cubits/edit_memory_cubit.dart';
-import '../../features/memory_details/presentation/cubits/memory_details_cubit.dart';
-import '../../features/memory_details/presentation/screens/edit_memory_screen.dart';
-import '../../features/memory_details/presentation/screens/memory_details_screen.dart';
+import '../../features/task_details/presentation/cubits/edit_memory_cubit.dart';
+import '../../features/task_details/presentation/cubits/memory_details_cubit.dart';
+import '../../features/task_details/presentation/screens/edit_task_screen.dart';
+import '../../features/task_details/presentation/screens/task_details_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/search/presentation/screens/search_screen.dart';
 import '../../features/search/presentation/screens/voice_search_results_screen.dart';
@@ -73,7 +73,7 @@ class AppRouter {
             final model = state.extra as TaskModel;
             return BlocProvider(
               create: (_) => getIt<MemoryDetailsCubit>()..watch(model.id),
-              child: MemoryDetailsScreen(model: model),
+              child: TaskDetailsScreen(model: model),
             );
           },
         ),
@@ -84,7 +84,7 @@ class AppRouter {
             final model = state.extra as TaskModel;
             return BlocProvider(
               create: (_) => getIt<EditMemoryCubit>(),
-              child: EditMemoryScreen(model: model),
+              child: EditTaskScreen(model: model),
             );
           },
         ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'core/bootstrap/bootstrap_app.dart';
 import 'core/utils/locale_manager.dart';
-import 'my_app.dart';
+import 'taskly.dart';
 
 void main() async {
   await bootstrapApp();
@@ -14,7 +14,7 @@ void main() async {
       path: LocaleManager.translationPath,
       fallbackLocale: LocaleManager.fallbackLocale,
       startLocale: LocaleManager.initialLocale,
-      child: const MyApp(),
+      child: const Taskly(),
     ),
   );
 }

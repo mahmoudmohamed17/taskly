@@ -1,16 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 
-class UpdateMemoryForm extends StatelessWidget {
+class TaskCreationForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final TextEditingController title;
   final TextEditingController description;
 
-  const UpdateMemoryForm({
+  const TaskCreationForm({
     super.key,
     required this.formKey,
     required this.title,
@@ -23,8 +24,8 @@ class UpdateMemoryForm extends StatelessWidget {
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Column(
+        spacing: 8.h,
         mainAxisSize: MainAxisSize.min,
-        spacing: 16,
         children: [
           CustomTextFormField(
             controller: title,
@@ -34,16 +35,17 @@ class UpdateMemoryForm extends StatelessWidget {
               final error = Validators.requiredField(value);
               return error != null ? context.tr(error) : null;
             },
+            textInputAction: TextInputAction.next,
           ),
           CustomTextFormField(
             controller: description,
-            maxLines: null,
             hint: AppStrings.addTaskDetailsPlaceholder,
             label: AppStrings.addTaskDetailsLabel,
             validator: (value) {
               final error = Validators.requiredField(value);
               return error != null ? context.tr(error) : null;
             },
+            textInputAction: TextInputAction.done,
           ),
         ],
       ),

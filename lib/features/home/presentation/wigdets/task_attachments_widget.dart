@@ -9,10 +9,10 @@ import '../../../../core/models/task_attachment_input.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../cubits/add_memory_cubit.dart';
-import 'memory_input_attachment_widget.dart';
+import 'task_input_attachment_widget.dart';
 
-class MemoryAttachmentsWidget extends StatelessWidget {
-  const MemoryAttachmentsWidget({super.key});
+class TaskAttachmentsWidget extends StatelessWidget {
+  const TaskAttachmentsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class MemoryAttachmentsWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             spacing: 8,
-            children: attachments.map((item) => MemoryInputAttachmentWidget(input: item)).toList(),
+            children: attachments.map((item) => TaskInputAttachmentWidget(input: item)).toList(),
           ),
         ),
       ],

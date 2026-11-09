@@ -11,17 +11,17 @@ import '../../../../core/utils/app_toast.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/task_category_selection_widget.dart';
 import '../../cubits/add_memory_cubit.dart';
-import 'memory_attachments_widget.dart';
-import 'memory_creation_form.dart';
+import 'task_attachments_widget.dart';
+import 'task_creation_form.dart';
 
-class MemoryCreationBottomSheet extends StatefulWidget {
-  const MemoryCreationBottomSheet({super.key});
+class TaskCreationBottomSheet extends StatefulWidget {
+  const TaskCreationBottomSheet({super.key});
 
   @override
-  State<MemoryCreationBottomSheet> createState() => _MemoryCreationBottomSheetState();
+  State<TaskCreationBottomSheet> createState() => _TaskCreationBottomSheetState();
 }
 
-class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
+class _TaskCreationBottomSheetState extends State<TaskCreationBottomSheet> {
   late final TextEditingController _title;
   late final TextEditingController _description;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -83,7 +83,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
             spacing: 16.h,
             children: [
               _header(context),
-              MemoryCreationForm(
+              TaskCreationForm(
                 formKey: _formKey,
                 title: _title,
                 description: _description,
@@ -115,7 +115,7 @@ class _MemoryCreationBottomSheetState extends State<MemoryCreationBottomSheet> {
                   ),
                 ],
               ),
-              const MemoryAttachmentsWidget(),
+              const TaskAttachmentsWidget(),
               CustomElevatedButton(
                 text: AppStrings.addTaskSave,
                 onPressed: _addCategory,

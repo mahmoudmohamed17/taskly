@@ -12,7 +12,7 @@
       "references": [],
       "type": "table",
       "data": {
-        "name": "memories",
+        "name": "tasks",
         "was_declared_in_moor": false,
         "columns": [
           {
@@ -68,8 +68,8 @@
             "default_client_dart": null,
             "dsl_features": [],
             "type_converter": {
-              "dart_expr": "const EnumNameConverter<MemoryCategory>(MemoryCategory.values)",
-              "dart_type_name": "MemoryCategory"
+              "dart_expr": "const EnumNameConverter<TaskCategory>(TaskCategory.values)",
+              "dart_type_name": "TaskCategory"
             }
           },
           {
@@ -135,14 +135,14 @@
             ]
           },
           {
-            "name": "memory_id",
-            "getter_name": "memoryId",
+            "name": "task_id",
+            "getter_name": "taskId",
             "moor_type": "int",
             "nullable": false,
             "customConstraints": null,
-            "defaultConstraints": "REFERENCES memories (id) ON DELETE CASCADE",
+            "defaultConstraints": "REFERENCES tasks (id) ON DELETE CASCADE",
             "dialectAwareDefaultConstraints": {
-              "sqlite": "REFERENCES memories (id) ON DELETE CASCADE"
+              "sqlite": "REFERENCES tasks (id) ON DELETE CASCADE"
             },
             "default_dart": null,
             "default_client_dart": null,
@@ -150,7 +150,7 @@
               {
                 "foreign_key": {
                   "to": {
-                    "table": "memories",
+                    "table": "tasks",
                     "column": "id"
                   },
                   "initially_deferred": false,
@@ -228,7 +228,7 @@
       "type": "index",
       "data": {
         "on": 0,
-        "name": "memories_category_idx",
+        "name": "tasks_category_idx",
         "sql": null,
         "unique": false,
         "columns": [
@@ -247,7 +247,7 @@
       "type": "index",
       "data": {
         "on": 0,
-        "name": "memories_updated_idx",
+        "name": "tasks_updated_idx",
         "sql": null,
         "unique": false,
         "columns": [
@@ -261,11 +261,11 @@
   ],
   "fixed_sql": [
     {
-      "name": "memories",
+      "name": "tasks",
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"memories\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"title\" TEXT NOT NULL, \"description\" TEXT NOT NULL DEFAULT '', \"category\" TEXT NOT NULL, \"normalized_text\" TEXT NOT NULL DEFAULT '', \"created_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)), \"updated_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"tasks\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"title\" TEXT NOT NULL, \"description\" TEXT NOT NULL DEFAULT '', \"category\" TEXT NOT NULL, \"normalized_text\" TEXT NOT NULL DEFAULT '', \"created_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)), \"updated_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)));"
         }
       ]
     },
@@ -274,25 +274,25 @@
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE TABLE IF NOT EXISTS \"attachments\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"memory_id\" INTEGER NOT NULL REFERENCES memories (id) ON DELETE CASCADE, \"type\" TEXT NOT NULL, \"file_name\" TEXT NOT NULL, \"size_bytes\" INTEGER NOT NULL DEFAULT 0, \"relative_path\" TEXT NOT NULL, \"created_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)));"
+          "sql": "CREATE TABLE IF NOT EXISTS \"attachments\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"task_id\" INTEGER NOT NULL REFERENCES tasks (id) ON DELETE CASCADE, \"type\" TEXT NOT NULL, \"file_name\" TEXT NOT NULL, \"size_bytes\" INTEGER NOT NULL DEFAULT 0, \"relative_path\" TEXT NOT NULL, \"created_at\" INTEGER NOT NULL DEFAULT (CAST(strftime('%s', CURRENT_TIMESTAMP) AS INTEGER)));"
         }
       ]
     },
     {
-      "name": "memories_category_idx",
+      "name": "tasks_category_idx",
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE INDEX memories_category_idx ON memories (category)"
+          "sql": "CREATE INDEX tasks_category_idx ON tasks (category)"
         }
       ]
     },
     {
-      "name": "memories_updated_idx",
+      "name": "tasks_updated_idx",
       "sql": [
         {
           "dialect": "sqlite",
-          "sql": "CREATE INDEX memories_updated_idx ON memories (updated_at)"
+          "sql": "CREATE INDEX tasks_updated_idx ON tasks (updated_at)"
         }
       ]
     }

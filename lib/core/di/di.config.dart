@@ -16,11 +16,11 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/home/cubits/add_memory_cubit.dart' as _i762;
 import '../../features/home/cubits/memories_list_cubit.dart' as _i531;
-import '../../features/memory_details/presentation/cubits/edit_memory_cubit.dart'
-    as _i1001;
-import '../../features/memory_details/presentation/cubits/memory_details_cubit.dart'
-    as _i349;
 import '../../features/search/cubits/search_cubit.dart' as _i51;
+import '../../features/task_details/presentation/cubits/edit_memory_cubit.dart'
+    as _i112;
+import '../../features/task_details/presentation/cubits/memory_details_cubit.dart'
+    as _i991;
 import '../cubits/app_flow_cubit.dart' as _i49;
 import '../cubits/theme_cubit.dart' as _i525;
 import '../cubits/voice_recording_cubit.dart' as _i1068;
@@ -77,14 +77,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i531.MemoriesListCubit>(
       () => _i531.MemoriesListCubit(gh<_i626.TaskRepository>()),
     );
-    gh.factory<_i1001.EditMemoryCubit>(
-      () => _i1001.EditMemoryCubit(gh<_i626.TaskRepository>()),
-    );
-    gh.factory<_i349.MemoryDetailsCubit>(
-      () => _i349.MemoryDetailsCubit(gh<_i626.TaskRepository>()),
-    );
     gh.factory<_i51.SearchCubit>(
       () => _i51.SearchCubit(gh<_i626.TaskRepository>()),
+    );
+    gh.factory<_i112.EditMemoryCubit>(
+      () => _i112.EditMemoryCubit(gh<_i626.TaskRepository>()),
+    );
+    gh.factory<_i991.MemoryDetailsCubit>(
+      () => _i991.MemoryDetailsCubit(gh<_i626.TaskRepository>()),
     );
     return this;
   }

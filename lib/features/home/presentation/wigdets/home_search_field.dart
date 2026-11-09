@@ -59,10 +59,7 @@ class HomeSearchField extends StatelessWidget {
               if (text == null || text.isEmpty) return;
             });
           },
-          icon: Icon(
-            Icons.mic,
-            size: 34.sp,
-          ),
+          icon: Icon(Icons.mic, size: 34.sp),
         ),
       ],
     );

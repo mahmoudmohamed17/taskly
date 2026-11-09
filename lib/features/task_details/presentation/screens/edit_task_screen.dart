@@ -14,18 +14,18 @@ import '../../../../core/widgets/custom_elevated_button.dart';
 import '../../../../core/widgets/task_category_selection_widget.dart';
 import '../cubits/edit_memory_cubit.dart';
 import '../wigdets/editable_attachments_widget.dart';
-import '../wigdets/update_memory_form.dart';
+import '../wigdets/update_task_form.dart';
 
-class EditMemoryScreen extends StatefulWidget {
+class EditTaskScreen extends StatefulWidget {
   final TaskModel model;
 
-  const EditMemoryScreen({super.key, required this.model});
+  const EditTaskScreen({super.key, required this.model});
 
   @override
-  State<EditMemoryScreen> createState() => _EditMemoryScreenState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _EditMemoryScreenState extends State<EditMemoryScreen> {
+class _EditTaskScreenState extends State<EditTaskScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final TextEditingController _title;
   late final TextEditingController _description;
@@ -93,7 +93,7 @@ class _EditMemoryScreenState extends State<EditMemoryScreen> {
         body: ListView(
           padding: const EdgeInsets.all(12),
           children: [
-            UpdateMemoryForm(formKey: _formKey, title: _title, description: _description),
+            UpdateTaskForm(formKey: _formKey, title: _title, description: _description),
             18.verticalSpace,
             TaskCategorySelectionWidget(
               initialCategory: widget.model.category,
