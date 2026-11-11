@@ -1,24 +1,46 @@
 import 'package:flutter/material.dart';
 
-/// Raw palette + Material 3 [ColorScheme]s for "Serene Trust".
+/// Raw palette + Material 3 [ColorScheme]s for the modern Blue/Purple theme.
 ///
 /// Rule of thumb: widgets should read colors from `Theme.of(context)`
 /// (`colorScheme`) or `context.appColors` — never from this class directly.
 /// The raw constants exist so the theme layer has one source of truth.
 abstract final class AppColors {
   // ── Brand ────────────────────────────────────────────────────────────────
-  static const Color primary = Color(0xFF1D4E5B); // Deep Slate Teal
-  static const Color secondary = Color(0xFFB45309); // Royal Bronze Amber
-  static const Color tertiary = Color(0xFF476355); // Olive Slate
+  static const Color primary = Color(0xFF2563EB); // Royal Blue
+  static const Color secondary = Color(0xFF7C3AED); // Royal Purple / Violet
+  static const Color tertiary = Color(0xFF0284C7); // Sky Blue
+
+  // ── Gradients ────────────────────────────────────────────────────────────
+  /// Gradient sampled from the app logo (Sky Blue to Royal Blue).
+  static const LinearGradient logoGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [
+      Color(0xFF70C1FF), // Azure / Sky Blue (top)
+      Color(0xFF2B8AFF), // Royal Blue (bottom)
+    ],
+  );
+
+  /// Brand gradient blending the logo blue with vibrant purple.
+  static const LinearGradient brandGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF60A5FA), // Light Blue
+      Color(0xFF2563EB), // Royal Blue
+      Color(0xFF7C3AED), // Vivid Purple
+    ],
+  );
 
   // ── Light neutrals ───────────────────────────────────────────────────────
-  static const Color canvas = Color(0xFFF4F3EF); // Warm Linen / Parchment
+  static const Color canvas = Color(0xFFF8FAFC); // Slate 50
   static const Color card = Color(0xFFFFFFFF);
-  static const Color fieldFill = Color(0xFFFBFBFA);
-  static const Color border = Color(0xFFE5E5DF);
-  static const Color onSurface = Color(0xFF1B1C1A);
-  static const Color onSurfaceVariant = Color(0xFF40484B);
-  static const Color outline = Color(0xFF71787B);
+  static const Color fieldFill = Color(0xFFF1F5F9); // Slate 100
+  static const Color border = Color(0xFFE2E8F0); // Slate 200
+  static const Color onSurface = Color(0xFF0F172A); // Slate 900
+  static const Color onSurfaceVariant = Color(0xFF475569); // Slate 600
+  static const Color outline = Color(0xFF94A3B8); // Slate 400
 
   // ── Dark neutrals ────────────────────────────────────────────────────────
   static const Color darkBg = Color(0xFF0F172A); // Deep Obsidian
@@ -34,16 +56,16 @@ abstract final class AppColors {
     brightness: Brightness.light,
     primary: primary,
     onPrimary: Color(0xFFFFFFFF),
-    primaryContainer: Color(0xFFBBEAFA),
-    onPrimaryContainer: Color(0xFF001F27),
+    primaryContainer: Color(0xFFDBEAFE),
+    onPrimaryContainer: Color(0xFF1E3A8A),
     secondary: secondary,
     onSecondary: Color(0xFFFFFFFF),
-    secondaryContainer: Color(0xFFFFDBCA),
-    onSecondaryContainer: Color(0xFF331200),
+    secondaryContainer: Color(0xFFEDE9FE),
+    onSecondaryContainer: Color(0xFF3B0764),
     tertiary: tertiary,
     onTertiary: Color(0xFFFFFFFF),
-    tertiaryContainer: Color(0xFFCAEAD8),
-    onTertiaryContainer: Color(0xFF042015),
+    tertiaryContainer: Color(0xFFE0F2FE),
+    onTertiaryContainer: Color(0xFF075985),
     error: Color(0xFFBA1A1A),
     onError: Color(0xFFFFFFFF),
     errorContainer: Color(0xFFFFDAD6),
@@ -51,37 +73,37 @@ abstract final class AppColors {
     surface: canvas,
     onSurface: onSurface,
     onSurfaceVariant: onSurfaceVariant,
-    surfaceDim: Color(0xFFDBDAD6),
+    surfaceDim: Color(0xFFE2E8F0),
     surfaceBright: canvas,
     surfaceContainerLowest: card,
     surfaceContainerLow: fieldFill,
-    surfaceContainer: Color(0xFFEFEEEA),
-    surfaceContainerHigh: Color(0xFFE9E8E4),
-    surfaceContainerHighest: Color(0xFFE3E2DF),
+    surfaceContainer: Color(0xFFF1F5F9),
+    surfaceContainerHigh: Color(0xFFE2E8F0),
+    surfaceContainerHighest: Color(0xFFCBD5E1),
     outline: outline,
     outlineVariant: border,
-    shadow: primary,
+    shadow: Color(0xFF0F172A),
     scrim: Color(0xFF0F172A),
-    inverseSurface: Color(0xFF30312E),
-    onInverseSurface: Color(0xFFF2F1ED),
-    inversePrimary: Color(0xFF9FCEDD),
+    inverseSurface: Color(0xFF1E293B),
+    onInverseSurface: Color(0xFFF8FAFC),
+    inversePrimary: Color(0xFF93C5FD),
     surfaceTint: Colors.transparent, // no M3 tint overlay on elevation
   );
 
   static const ColorScheme darkScheme = ColorScheme(
     brightness: Brightness.dark,
-    primary: Color(0xFF2DD4BF),
-    onPrimary: Color(0xFF04222A),
-    primaryContainer: primary,
-    onPrimaryContainer: Color(0xFFBBEAFA),
-    secondary: Color(0xFFFDBA74),
-    onSecondary: Color(0xFF331200),
-    secondaryContainer: Color(0xFF763300),
-    onSecondaryContainer: Color(0xFFFFDBCA),
-    tertiary: Color(0xFFAFCEBC),
-    onTertiary: Color(0xFF042015),
-    tertiaryContainer: Color(0xFF314C3F),
-    onTertiaryContainer: Color(0xFFCAEAD8),
+    primary: Color(0xFF60A5FA),
+    onPrimary: Color(0xFF001B3E),
+    primaryContainer: Color(0xFF1D4ED8),
+    onPrimaryContainer: Color(0xFFDBEAFE),
+    secondary: Color(0xFFA78BFA),
+    onSecondary: Color(0xFF2E1065),
+    secondaryContainer: Color(0xFF5B21B6),
+    onSecondaryContainer: Color(0xFFEDE9FE),
+    tertiary: Color(0xFF38BDF8),
+    onTertiary: Color(0xFF082F49),
+    tertiaryContainer: Color(0xFF0369A1),
+    onTertiaryContainer: Color(0xFFE0F2FE),
     error: Color(0xFFFFB4AB),
     onError: Color(0xFF690005),
     errorContainer: Color(0xFF93000A),
