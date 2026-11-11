@@ -28,6 +28,12 @@ class AppStrings {
   static const String onboardingStep3SubTitle = 'onboarding.step3.subTitle';
   static const String onboardingStep3Description = 'onboarding.step3.description';
 
+  // Bottom Navigation Bar
+  static const String navBarHome = 'navBar.home';
+  static const String navBarCalendar = 'navBar.calendar';
+  static const String navBarProjects = 'navBar.projects';
+  static const String navBarProfile = 'navBar.profile';
+
   // Home
   static const String homeGreeting = 'home.greeting';
   static const String homeHeadline = 'home.headline';

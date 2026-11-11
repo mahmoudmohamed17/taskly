@@ -30,6 +30,12 @@
       "description": "Your data stays encrypted on your device, works offline, and is protected by your biometrics or PIN."
     }
   },
+  "navBar": {
+    "home": "Home",
+    "calendar": "Calendar",
+    "projects": "Projects",
+    "profile": "Me"
+  },
   "home": {
     "greeting": "Hello, how are you today?",
     "headline": "What would you like to accomplish?",

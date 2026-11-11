@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/cubits/tasks_list_cubit.dart';
-import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/main_shell/main_shell.dart';
 import '../../features/task_details/presentation/cubits/edit_memory_cubit.dart';
 import '../../features/task_details/presentation/cubits/memory_details_cubit.dart';
 import '../../features/task_details/presentation/screens/edit_task_screen.dart';
@@ -35,11 +34,8 @@ class AppRouter {
           builder: (context, state) => const OnboardingScreen(),
         ),
         _route(
-          AppRoutes.home,
-          builder: (context, state) => BlocProvider(
-            create: (_) => getIt<TasksListCubit>()..watch(),
-            child: const HomeScreen(),
-          ),
+          AppRoutes.mainShell,
+          builder: (context, state) => const MainShell(),
         ),
         _route(
           AppRoutes.search,

@@ -40,24 +40,12 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showBottomSheet(context),
-        tooltip: context.tr(AppStrings.memoryCreatedAt),
-        child: const FaIcon(FontAwesomeIcons.penToSquare),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-    );
-  }
-
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (_) => BlocProvider(
-        create: (_) => getIt<AddTaskCubit>(),
-        child: const TaskCreationBottomSheet(),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => _showBottomSheet(context),
+      //   tooltip: context.tr(AppStrings.memoryCreatedAt),
+      //   child: const FaIcon(FontAwesomeIcons.penToSquare),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 }

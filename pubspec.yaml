@@ -43,6 +43,7 @@ dependencies:
   equatable: ^3.0.0
   skeletonizer: ^3.0.0
   file_picker: ^13.3.0
+  persistent_bottom_nav_bar_v2: ^6.5.0
 
 dev_dependencies:
   flutter_test:
