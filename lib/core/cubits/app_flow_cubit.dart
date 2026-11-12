@@ -15,7 +15,7 @@ class AppFlowCubit extends HydratedCubit<AppFlowState> {
     switch (state) {
       case AppFlowState.onboarding:
         return AppRoutes.onboarding;
-      case AppFlowState.mainShell:
+      case AppFlowState.home:
         return AppRoutes.home;
     }
   }
@@ -25,7 +25,7 @@ class AppFlowCubit extends HydratedCubit<AppFlowState> {
   /// Covers all flow scenarios:
   /// - Splash screen: returns `null` so splash animations/initialization can finish.
   /// - [AppFlowState.login]: guards all other routes and redirects to login (or allows signup).
-  /// - [AppFlowState.mainShell]: guards auth routes and redirects to home.
+  /// - [AppFlowState.home]: guards auth routes and redirects to home.
   String? resolveRedirect(String currentPath) {
     // Keep user on the splash screen while it performs animation/initialization.
     // if (currentPath == AppRoutes.splash) {
@@ -38,8 +38,8 @@ class AppFlowCubit extends HydratedCubit<AppFlowState> {
         return AppRoutes.onboarding;
 
       // Guard: onboarding done → never show onboarding again.
-      case AppFlowState.mainShell when currentPath == AppRoutes.onboarding:
-        return AppRoutes.mainShell;
+      case AppFlowState.home when currentPath == AppRoutes.onboarding:
+        return AppRoutes.home;
 
       // no redirect needed
       default:
@@ -47,10 +47,10 @@ class AppFlowCubit extends HydratedCubit<AppFlowState> {
     }
   }
 
-  /// Marks onboarding as complete, persists the state, and moves to [AppFlowState.mainShell].
+  /// Marks onboarding as complete, persists the state, and moves to [AppFlowState.home].
   /// GoRouter's refreshListenable will re-evaluate the redirect automatically.
   void completeOnboarding() {
-    emit(AppFlowState.mainShell);
+    emit(AppFlowState.home);
   }
 
   // TODO: Delete this soon

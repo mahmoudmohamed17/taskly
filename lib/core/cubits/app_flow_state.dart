@@ -3,5 +3,5 @@ enum AppFlowState {
   onboarding,
 
   /// User has completed onboarding and should land on home.
-  mainShell,
+  home,
 }

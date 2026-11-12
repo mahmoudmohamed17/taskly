@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/routing/app_routes.dart';
 import '../../../../core/utils/app_assets.dart';
-import '../../../../core/widgets/change_langauge_button.dart';
-import '../../../../core/widgets/change_theme_button.dart';
+import '../screens/push_drawer_scaffold.dart';
 
 class HomeHeader extends StatelessWidget {
-  const new({
-    super.key,
-  });
+  final GlobalKey<PushDrawerScaffoldState> drawerKey;
+
+  const HomeHeader({super.key, required this.drawerKey});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // TODO: This would be deleted as soon as we finished this screen
+        GestureDetector(
+          onTap: drawerKey.currentState?.toggle,
+          child: const FaIcon(FontAwesomeIcons.bars),
+        ),
         GestureDetector(
           onTap: () => context.push(AppRoutes.voiceSearchResults),
           child: Image.asset(AppImages.logo, height: 38.h, width: 38.w),
-        ),
-        Row(
-          spacing: 12.w,
-          children: const [ChangeThemeButton(), ChangeLangaugeButton()],
         ),
       ],
     );
