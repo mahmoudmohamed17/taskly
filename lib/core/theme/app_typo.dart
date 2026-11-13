@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Typography for Memory Reminder — IBM Plex Sans Arabic (covers Arabic + Latin).
 abstract final class AppTypo {

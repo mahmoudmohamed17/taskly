@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -10,7 +10,7 @@ class HomeDrawer extends StatelessWidget {
       body: Column(
         children: List.generate(
           5,
-          (_) => ListTile(
+          (_) => const ListTile(
             leading: FaIcon(FontAwesomeIcons.user),
             title: Text('Mahmoud Mohamed'),
             subtitle: Text('mahmoud.dev@gmail.com'),

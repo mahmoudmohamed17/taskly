@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Raw palette + Material 3 [ColorScheme]s for the modern Blue/Purple theme.
 ///
